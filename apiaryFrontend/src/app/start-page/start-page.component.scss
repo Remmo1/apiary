@@ -1,0 +1,13 @@
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.mainButton{
+    width: 300px;
+    height: 150px;
+    font-size: 30px;
+    margin: 30px;
+}

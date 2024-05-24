@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,14 +10,20 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './frames-indicator.component.html',
   styleUrls: ['./frames-indicator.component.scss']
 })
-export class FramesIndicatorComponent {
+export class FramesIndicatorComponent implements OnInit{
+
   @Input() color: string = 'black'; 
+  @Input() numberInput = 0; 
   @Output() valueChanged: EventEmitter<number> = new EventEmitter<number>();
   
   numberOfRectangles: number = 0;
   rectangles: number[] = [];
-  numberInput = 0;
+
   maxRectangles = 12;
+
+  ngOnInit(): void {
+    this.onInputChange();
+  }
 
   onInputChange(): void {
     const num = Math.min(Math.max(this.numberInput, 0), this.maxRectangles);

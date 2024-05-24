@@ -19,7 +19,7 @@ export class HivesPageComponent {
 
   constructor(private router: Router) { }
   dataSource = [];
-  tableColumns = ['id', 'name', 'queen', 'frames', 'bodies'];
+  tableColumns = ['id', 'name', 'queen', 'frames', 'corps','options'];
 
   goToStartPage() 
   {

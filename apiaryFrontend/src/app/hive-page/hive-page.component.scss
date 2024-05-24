@@ -16,8 +16,53 @@
     font-size: 40px;
     margin-left: 30px;
 }
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+}
+
+.corps{
+    width: 360px;
+}
+.corpsHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.corpBackground{
+    background-color: #f8e2a9;
+    padding: 20px;
+    
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 360px;
+    border:  2px solid #d4b180;
+}
+.addButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.corpHeader{
+    margin-top: 10px;
+}
+.corpTitle{
+    margin-bottom: 0px;
+}
 
 .frames{
     display: flex;
     flex-direction: column;
+}
+
+.notes{
+    margin-left: 180px;
+    width: 700px;
+}
+
+.notesHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

@@ -3,6 +3,8 @@ export class Note {
     date!: Date;
     text!: string;
     hiveId!: number;
+    honey!: number;
+    syroup!: number;
     
     constructor(id: number, date: Date, text: string, hiveId: number) {
         this.id = id;

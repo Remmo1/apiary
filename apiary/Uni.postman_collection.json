@@ -1,0 +1,1176 @@
+{
+	"info": {
+		"_postman_id": "ca2a24f4-a19e-427c-9148-0373b17815d3",
+		"name": "Uni",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21815202"
+	},
+	"item": [
+		{
+			"name": "dot_net",
+			"item": [
+				{
+					"name": "Add category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ryby\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dot_net_url}}/api/category",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dot_net_url}}/api/category/1",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dot_net_url}}/api/category",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1002,\r\n    \"name\": \"Warzywa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dot_net_url}}/api/category",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chleb pszenny\",\r\n    \"price\": 9.99,\r\n    \"category\": null,\r\n    \"categoryId\": 1\r\n}\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dot_net_url}}/api/article",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get articles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dot_net_url}}/api/article",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update article",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3004,\r\n    \"name\": \"Pstrąg tęczowy\",\r\n    \"price\": 47.99,\r\n    \"category\": null,\r\n    \"categoryId\": 1003,\r\n    \"formFile\": null,\r\n    \"imageFilename\": \"pstrąg-łososiowy.jpg\",\r\n    \"photoRelativePath\": \"/upload/pstrąg-łososiowy.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{dot_net_url}}/api/article",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete article",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{dot_net_cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{dot_net_url}}/api/article/7002",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"7002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{dot_net_url}}/api/article/getNextThree/3/2",
+							"host": [
+								"{{dot_net_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"getNextThree",
+								"3",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "web-project",
+			"item": [
+				{
+					"name": "Get Keycloack Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"get token\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "spring-boot-keycloack-client",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "rpisarski",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234abcd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/SpringBackend/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"SpringBackend",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"get token\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"rpisarski\",\r\n    \"password\": \"1234abcd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Keycloack Token Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"get token\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"access_token\", jsonData.access_token);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "admin-cli",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "superuser",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/master/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keycloak users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/admin/realms/SpringBackend/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"admin",
+								"realms",
+								"SpringBackend",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keycloak users Copy",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/send",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startTimestamp\": \"2023-05-28T14:00:00\",\r\n  \"endTimestamp\": \"2023-05-28T15:00:00\",\r\n  \"organizer\": \"rpisarski\",\r\n  \"participants\": [ 1, 2 ],\r\n  \"rooms\": [ 1, 2 ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reservations range",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/reservations/range?startDate=2023-05-01&endDate=2023-06-01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"reservations",
+								"range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-05-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-06-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rooms",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/SpringBackend/protocol/openid-connect/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"SpringBackend",
+								"protocol",
+								"openid-connect",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get weather",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://archive-api.open-meteo.com/v1/era5?latitude=52.52&longitude=13.41&start_date=2021-01-01&end_date=2021-01-31&daily={{daily_params}}&timezone=auto",
+							"protocol": "https",
+							"host": [
+								"archive-api",
+								"open-meteo",
+								"com"
+							],
+							"path": [
+								"v1",
+								"era5"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "52.52"
+								},
+								{
+									"key": "longitude",
+									"value": "13.41"
+								},
+								{
+									"key": "start_date",
+									"value": "2021-01-01"
+								},
+								{
+									"key": "end_date",
+									"value": "2021-01-31"
+								},
+								{
+									"key": "daily",
+									"value": "{{daily_params}}"
+								},
+								{
+									"key": "timezone",
+									"value": "auto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get latitude and longtitude",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://geocoding-api.open-meteo.com/v1/search?name=Anchorage",
+							"protocol": "https",
+							"host": [
+								"geocoding-api",
+								"open-meteo",
+								"com"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Anchorage"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get results",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJraWQiOiJDYTAwaW5QQjVJa2RmQ1lwUWZleDNTcUduTlNnUWVFcVppZkc0UHU1T1BJPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2NDc4NzQzOC0yMGIxLTcwMDYtZmI4Mi0wNmUwM2NlNWFlOGUiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV85TGdjdnlGdEQiLCJjbGllbnRfaWQiOiIyNDN1NjhoNG5lMTJvcnFnbWg1YThvbWJ2dSIsIm9yaWdpbl9qdGkiOiI1OWNiYzg4ZC0xMGQ0LTRmOTUtODkyZS03ZGM5OTdlNTA4M2IiLCJldmVudF9pZCI6ImQxZWZkZjlmLWM5OTUtNGE2Mi04YzJiLTczOWExNDdlMGY3NyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MTY0NjMwNDYsImV4cCI6MTcxNjQ2MzM0NiwiaWF0IjoxNzE2NDYzMDQ2LCJqdGkiOiI1YTEwMjczNy1kMjA5LTQzZGItOTU5MS02OWM5NTBhYTMyYzgiLCJ1c2VybmFtZSI6InJlbW1vIn0.D1vvMUEVEX0VgKKnC1DQ_pU-HhYMRrk3aqRf_6Gaqir_8gbOHRvWR6Z66uobaBnOdJEuOk5oZH1c0uSwJhxz7R-ByJjqvAvlk5-fdLNCGhgMJFlE968ig715dsYidD6TYcurcLq27Ak0GsgHmnYnb8LoLEVaM28CfNOQ3wgL_SyJgKjV51bCQAfwHPoEGy0Q18_FCr161fGa_BDGs1D1qOz_xaIPG4N0gCYhAUkC4yPa3shzeJSDOEAbBozVGOiR_A7mSDJ7He1LTQsmlPtq9MH_Jx7EU1cAT3UJyqNagoIkpSh8qRZQ5avDF-_K4_KfjfLdbY8HkxwkUY6f-F3aWA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://cb-load-balancer-1437179765.us-east-1.elb.amazonaws.com:3000/result",
+							"protocol": "http",
+							"host": [
+								"cb-load-balancer-1437179765",
+								"us-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"port": "3000",
+							"path": [
+								"result"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ZPI",
+			"item": [
+				{
+					"name": "Get submissions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/submissions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get submission with details Copy 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/submissions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"submissions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ratings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/ratings/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"ratings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create empty rating for submission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"ratingType\": \"INDIVIDUAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/ratings/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"ratings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upsert partial rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"criterionId\": 10,\r\n   \"ratingId\": null,\r\n   \"partialRatingId\": 4,\r\n   \"justification\": \"Very good job, I don't see errors.\",\r\n   \"points\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/partialratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"partialratings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit rating draft",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/ratings/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"ratings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send email",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Apiary",
+			"item": [
+				{
+					"name": "Hive",
+					"item": [
+						{
+							"name": "Get all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/hives",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hives"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/hives/7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hives",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add new",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hive 6\",\r\n    \"queen\": \"Queen Bee 6\",\r\n    \"corps\": [],\r\n    \"notes\": []\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/hives",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hives"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update existing",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hive 5\",\r\n    \"queen\": \"Queen Bee 5\",\r\n    \"corps\": [\r\n        {\r\n            \"framesBlack\": 5,\r\n            \"framesBrown\": 3,\r\n            \"framesWhite\": 7,\r\n            \"framesEmpty\": 2\r\n        },\r\n        {\r\n            \"framesBlack\": 4,\r\n            \"framesBrown\": 6,\r\n            \"framesWhite\": 5,\r\n            \"framesEmpty\": 1\r\n        }\r\n    ],\r\n    \"notes\": [\r\n        {\r\n            \"date\": \"2024-05-24T12:00:00Z\",\r\n            \"text\": \"Checked hive, everything looks good.\",\r\n            \"honey\": 10,\r\n            \"syrup\": 5\r\n        },\r\n        {\r\n            \"date\": \"2024-05-25T14:30:00Z\",\r\n            \"text\": \"Added new frames to the hive.\",\r\n            \"honey\": 0,\r\n            \"syroup\": 0\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/hives/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hives",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Hive 5\",\r\n    \"queen\": \"Queen Bee 5\",\r\n    \"corps\": [\r\n        {\r\n            \"framesBlack\": 5,\r\n            \"framesBrown\": 3,\r\n            \"framesWhite\": 7,\r\n            \"framesEmpty\": 2\r\n        },\r\n        {\r\n            \"framesBlack\": 4,\r\n            \"framesBrown\": 6,\r\n            \"framesWhite\": 5,\r\n            \"framesEmpty\": 1\r\n        }\r\n    ],\r\n    \"notes\": [\r\n        {\r\n            \"date\": \"2024-05-24T12:00:00Z\",\r\n            \"text\": \"Checked hive, everything looks good.\",\r\n            \"honey\": 10,\r\n            \"syrup\": 5\r\n        },\r\n        {\r\n            \"date\": \"2024-05-25T14:30:00Z\",\r\n            \"text\": \"Added new frames to the hive.\",\r\n            \"honey\": 0,\r\n            \"syroup\": 0\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/hives/7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"hives",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,10 +1,13 @@
 <div class="frameIndicator">
     <div class="">
-        <label for="black-frames-number">Liczba ramek czarnych:</label>
+        <label *ngIf="color==='black'" for="black-frames-number" class="frameLabel">Ramki czarne  </label>
+        <label *ngIf="color==='brown'" for="black-frames-number" class="frameLabel">Ramki brązowe</label>
+        <label *ngIf="color==='white'" for="black-frames-number" class="frameLabel">Ramki białe  </label>
+        <label *ngIf="color==='empty'" for="black-frames-number" class="frameLabel">Ramki z węzą</label>
         <input id="black-frames-number" type="number" [(ngModel)]="numberInput" (input)="onInputChange()"  class="frameInput"/>
     </div>
     <div class="rectangle-container">
-        <div *ngFor="let rectangle of rectangles" class="rectangle"></div>
+        <div *ngFor="let rectangle of rectangles" class="rectangle-{{color}}"></div>
         <p *ngIf="numberInput > maxRectangles" class="rectangleIndicatorPlus">+</p>
     </div>
 </div>

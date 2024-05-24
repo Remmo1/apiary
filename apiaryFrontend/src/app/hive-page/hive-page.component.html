@@ -5,4 +5,10 @@
     </h1>
 </div>
 
-<app-frames-indicator></app-frames-indicator>
+
+<div class="frames">
+    <app-frames-indicator color="black" (valueChanged)="onValueChange($event)"></app-frames-indicator>
+    <app-frames-indicator color="brown" (valueChanged)="onValueChange($event)"></app-frames-indicator>
+    <app-frames-indicator color="white" (valueChanged)="onValueChange($event)"></app-frames-indicator>
+    <app-frames-indicator color="empty" (valueChanged)="onValueChange($event)"></app-frames-indicator>
+</div>

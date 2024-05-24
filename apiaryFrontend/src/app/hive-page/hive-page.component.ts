@@ -14,7 +14,11 @@ import { FramesIndicatorComponent } from "../frames-indicator/frames-indicator.c
     imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, FramesIndicatorComponent]
 })
 export class HivePageComponent implements OnInit{
+onValueChange($event: number) {
+throw new Error('Method not implemented.');
+}
   hiveId = 0;
+  corpsCount = 0;
   constructor(private router: Router) { }
 
   ngOnInit(): void {

@@ -1,0 +1,34 @@
+<h1 class="title">
+    Ule
+</h1>
+
+<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="queen">
+      <th mat-header-cell *matHeaderCellDef>Królowa</th>
+      <td mat-cell *matCellDef="let element">{{element.progress}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="frames">
+        <th mat-header-cell *matHeaderCellDef>Liczba ramek</th>
+        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="bodies">
+        <th mat-header-cell *matHeaderCellDef>Liczba korpusów</th>
+        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+  </table>

@@ -1,6 +1,18 @@
-<h1 class="title">
-    Ule
-</h1>
+<div class="pageHeader">
+  <button mat-icon-button class="goBackButton" (click)="goToStartPage()"> <mat-icon class="large-icon">undo</mat-icon></button>
+  <h1 class="title">
+      Ule
+  </h1>
+</div>
+<div class="apiaryStats">
+  <p>Liczba uli:  {{beeHivesCount}}</p>
+  <p>Liczba ramek:  {{framesCount}}</p>
+  <p>Liczba korpusów:  {{corpsCount}}</p>
+</div>
+
+<div class="optionButtons">
+  <button mat-raised-button class="addButton">Dodaj ul</button>
+</div>
 
 <table mat-table [dataSource]="dataSource">
 
@@ -29,6 +41,15 @@
         <td mat-cell *matCellDef="let element">{{element.progress}}</td>
       </ng-container>
 
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">   
+          <button mat-icon-button> <mat-icon>edit</mat-icon></button>
+          <button mat-icon-button> <mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
   </table>
+

@@ -1,0 +1,28 @@
+.frameIndicator{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.rectangle-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -10px;
+  }
+  
+  .rectangle {
+    width: 10px;
+    height: 30px;
+    background-color: #472608;
+    margin: 2px;
+  }
+
+  .rectangleIndicatorPlus{
+    margin-top: 5px;
+    font-size: large;
+  }
+
+  .frameInput{
+    width: 50px;
+    margin-left: 10px;
+  }

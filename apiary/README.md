@@ -154,7 +154,6 @@ Example response:
 }
 ```
 
-
 4. #### /api/hives/{id}
 * Description: Edit existing hive
 * Method: PUT
@@ -212,3 +211,76 @@ Example response:
     ]
 }
 ```
+
+5. #### /api/hives/{id}
+* Description: Delete existing hive
+* Method: DELETE
+* Parameters: Id of the hive
+
+Responses:
+* 200 - Hive deleted successfully
+* 404 - Hive not found
+
+6. #### /api/seasons
+* Description: This endpoint allows you to retrieve information about seasons.
+* Method: GET
+* Parameters: None
+
+Example response:
+```
+[
+    {
+        "id": 1,
+        "name": "Spring 2024",
+        "startDate": "2024-03-20T00:00:00.000+00:00",
+        "endDate": "2024-06-21T00:00:00.000+00:00",
+        "honey": 20,
+        "syrup": 10
+    },
+    {
+        "id": 3,
+        "name": "Summer 2024",
+        "startDate": "2024-06-22T00:00:00.000+00:00",
+        "endDate": "2024-09-21T00:00:00.000+00:00",
+        "honey": 10,
+        "syrup": 5
+    }
+]
+```
+WARNING: Can consume time, syrup and honey is counting inside this method.
+
+7. #### /api/seasons
+* Description: Add new season
+* Method: POST
+* Parameters: None
+* Body:
+```
+{
+    "name": "Summer 2024",
+    "startDate": "2024-06-22T00:00:00Z",
+    "endDate": "2024-09-21T00:00:00Z"
+}
+```
+WARNING: Do NOT provide honey and syrup in this request, it will always be set to zero.
+
+Example response:
+```
+{
+    "id": 3,
+    "name": "Summer 2024",
+    "startDate": "2024-06-22T00:00:00.000+00:00",
+    "endDate": "2024-09-21T00:00:00.000+00:00",
+    "honey": 0,
+    "syrup": 0
+}
+```
+WARNING: As mentioned above, honey and syrup is counted in GET method, not here. 
+
+8. #### /api/sesons/{id}
+* Description: Delete existing season
+* Method: DELETE
+* Parameters: Id of the season
+
+Responses:
+* 200 - Season deleted successfully
+* 404 - Season not found

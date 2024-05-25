@@ -1,14 +1,11 @@
 package com.apiary.note;
 
-import com.apiary.hive.HiveRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
 public class NoteMapper {
-
-    private final HiveRepository hiveRepository;
 
     public Note toEntity(NoteDTO dto) {
         Note note = new Note();

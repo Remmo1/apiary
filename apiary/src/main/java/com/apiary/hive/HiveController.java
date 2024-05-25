@@ -25,8 +25,8 @@ public class HiveController {
     }
 
     @PostMapping
-    public HiveDTO createHive(@RequestBody HiveDTO hiveDTO) {
-        return hiveService.save(hiveDTO);
+    public ResponseEntity<HiveDTO> createHive(@RequestBody HiveDTO hiveDTO) {
+        return ResponseEntity.ok(hiveService.save(hiveDTO));
     }
 
     @PutMapping("/{id}")
@@ -35,7 +35,7 @@ public class HiveController {
             return ResponseEntity.notFound().build();
         }
         hiveDTO.setId(id); // Ensure ID is set from the path variable
-        return ResponseEntity.ok(hiveService.save(hiveDTO));
+        return ResponseEntity.ok(hiveService.update(hiveDTO));
     }
 
     @DeleteMapping("/{id}")

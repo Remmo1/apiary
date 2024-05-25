@@ -29,6 +29,19 @@ public class HiveService {
         return hiveMapper.toDto(save);
     }
 
+    public HiveDTO update(HiveDTO hive) {
+        var found = hiveRepository.findById(hive.getId());
+        if (found.isPresent()) {
+            var hiveFromDb = found.get();
+            hiveFromDb.getCorps().clear();
+            hiveFromDb.getNotes().clear();
+
+            var save = hiveRepository.save(hiveMapper.toEntity(hive));
+            return hiveMapper.toDto(save);
+        }
+        return null;
+    }
+
     public boolean canUpdateOrDelete(Long hiveId) {
         var found = hiveRepository.findById(hiveId);
         return found.isPresent();

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Dodaj ul</h1>
+<div mat-dialog-content class="content">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nazwa ula</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Królowa</mat-label>
+    <input matInput [(ngModel)]="data.queen">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button (click)="onNoClick()">Anuluj</button>
+  <button mat-button [mat-dialog-close]="data">Zapisz</button>
+</div>

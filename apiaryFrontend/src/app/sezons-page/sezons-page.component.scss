@@ -24,6 +24,20 @@
 
     .addButton{
         margin-bottom: 10px;
-        margin-right: 10px;
     }
+}
+
+.sezons{
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.sezonsTable{
+    min-width: 700px;
+    max-width: 90vw;
+    margin-bottom: 100px;
+    margin-left: 40px;
 }

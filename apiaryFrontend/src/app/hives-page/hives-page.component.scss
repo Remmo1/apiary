@@ -27,3 +27,32 @@
         margin-right: 10px;
     }
 }
+.apiaryStats{
+    margin-bottom: 20px;
+}
+
+.infoText{
+    margin-left: 10px;
+}
+
+.hives{
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.hivesHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+
+}
+
+.hivesTable{
+    min-width: 700px;
+    max-width: 80vw;
+    margin-bottom: 100px;
+    margin-left: 40px;
+}

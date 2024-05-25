@@ -7,3 +7,26 @@ body {
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-mat-table {
+  background-color: #f8e2a9; 
+  border: 2px solid #d4b180; 
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+
+.custom-mat-table th.mat-header-cell, .custom-mat-table td.mat-cell {
+  background-color: #f0dab1; 
+  border-bottom: 1px solid #d4b180; 
+  color: #333; 
+}
+
+.custom-mat-table th.mat-header-cell {
+  font-weight: bold; 
+  background-color: #f8e2a9; 
+}
+
+.custom-mat-table td.mat-cell {
+  padding: 16px; 
+  background-color: #f8e2a9; 
+}

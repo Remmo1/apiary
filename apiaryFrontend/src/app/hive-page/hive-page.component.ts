@@ -17,6 +17,8 @@ import { Note } from '../models/note';
 })
 export class HivePageComponent implements OnInit{
 
+
+
   hiveId = 1;
   corpsCount = 0;
   corps: Corp[] = [];
@@ -26,6 +28,7 @@ export class HivePageComponent implements OnInit{
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    //rządanie do backendu
     this.hiveId = Number(this.router.url.split('/')[2]);
     this.corps = [new Corp(1, 1, 6, 16, 4, this.hiveId), new Corp(2, 6, 0, 9, 2, this.hiveId),new Corp(3, 1, 6, 16, 4, this.hiveId),];
     this.corpsCount = this.corps.length;
@@ -49,8 +52,18 @@ export class HivePageComponent implements OnInit{
     this.corpsCount++;
   }
 
+  deleteCorp(arg0: number)
+  {
+    this.corps = this.corps.filter(corp => corp.id !== arg0);
+  }
+
   onValueChange($event: number) 
   {
     throw new Error('Method not implemented.');
+  }
+
+  saveHive() 
+  {
+    //rządaie do backendu
   }
 }

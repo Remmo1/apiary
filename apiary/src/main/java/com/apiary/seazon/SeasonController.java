@@ -1,7 +1,5 @@
 package com.apiary.seazon;
 
-import com.apiary.hive.HiveDTO;
-import com.apiary.hive.HiveService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +21,15 @@ public class SeasonController {
     @PostMapping
     public ResponseEntity<SeasonDTO> createSeason(@RequestBody SeasonDTO seasonDTO) {
         return ResponseEntity.ok(seasonService.save(seasonDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSeason(@PathVariable Long id) {
+        if (!seasonService.canUpdateOrDelete(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        seasonService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 }

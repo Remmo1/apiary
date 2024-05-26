@@ -4,14 +4,14 @@ export class Sezon {
     startDate!: Date;
     endDate!: Date;
     honey!: number;
-    syroup!: number;
+    syrup!: number;
 
-    constructor(name: string, startDate: Date, endDate: Date, honey: number, syroup: number) {
+    constructor(name: string, startDate: Date, endDate: Date, honey: number, syrup: number) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.honey = honey;
-        this.syroup = syroup;
+        this.syrup = syrup;
     }
 
 }

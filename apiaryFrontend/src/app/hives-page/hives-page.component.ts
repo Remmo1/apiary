@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddHiveModalComponent } from '../add-hive-modal/add-hive-modal.component';
 import { Hive } from '../models/hive';
-import { Corp } from '../models/corp';
+import { HivesService } from '../services/hives.service';
 
 @Component({
   selector: 'app-hives-page',
@@ -21,16 +21,17 @@ export class HivesPageComponent implements OnInit{
   framesCount = 0;
   corpsCount = 0;
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog, private hivesService :HivesService) { }
 
   dataSource : Hive[] = [];
-  hives: Hive[] = [];
   tableColumns = ['id', 'name', 'queen', 'frames', 'corps','options'];
 
   ngOnInit(): void 
   {
-    //rządanie do backendu
-    this.countApiaryParameters();
+    this.hivesService.getHives().subscribe(hives => {
+      this.dataSource = hives;
+      this.countApiaryParameters();
+    });
   }
 
   goToStartPage() 
@@ -39,9 +40,9 @@ export class HivesPageComponent implements OnInit{
   }
 
   countApiaryParameters() : void {
-    this.beeHivesCount = this.hives.length;
-    this.framesCount = this.hives.reduce((acc, hive) => acc + this.countFramesInHive(hive), 0);
-    this.corpsCount = this.hives.reduce((acc, hive) => acc + this.countCorpsInHive(hive), 0);
+    this.beeHivesCount = this.dataSource.length;
+    this.framesCount = this.dataSource.reduce((acc, hive) => acc + this.countFramesInHive(hive), 0);
+    this.corpsCount = this.dataSource.reduce((acc, hive) => acc + this.countCorpsInHive(hive), 0);
   }
 
   openAddHiveDialog() : void {
@@ -51,11 +52,17 @@ export class HivesPageComponent implements OnInit{
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      //rządanie do backendu
-      this.hives.push(new Hive(result.name, result.queen, [], []));
-      this.dataSource.push(new Hive(result.name, result.queen, [], []));
-      this.dataSource = [...this.dataSource];
-      this.countApiaryParameters();
+      this.hivesService.createHive(new Hive(result.name, result.queen, [], [])).subscribe(result => {
+        if(result instanceof Error){
+          console.log(result);
+        }
+        else{
+          this.dataSource.push(result);
+          this.dataSource = [...this.dataSource];
+          this.countApiaryParameters();
+        }
+
+      });
     });
   }
 
@@ -79,18 +86,18 @@ export class HivesPageComponent implements OnInit{
     }
   }
 
-  deleteHive(event: any) 
+  deleteHive(id: number) 
   {
-    //rządanie do backendu
-    this.hives = this.hives.filter(hive => hive.id !== event.id);
-    this.dataSource = this.dataSource.filter(hive => hive.id !== event.id);
-    this.dataSource = [...this.dataSource];
-    this.countApiaryParameters();
+    this.hivesService.deleteHive(id).subscribe(() => {
+      this.dataSource = this.dataSource.filter(hive => hive.id !== id);
+      this.dataSource = [...this.dataSource];
+      this.countApiaryParameters();
+    });
   }
 
 
-  editHive(event: any)
+  editHive(id: number)
   {
-    this.router.navigate(['/hive', event.id]);
+    this.router.navigate(['/hive', id]);
   }
 }

@@ -41,13 +41,13 @@
         
         <ng-container matColumnDef="syroup">
           <th mat-header-cell *matHeaderCellDef>Ilość dostarczonego syropu</th>
-          <td mat-cell *matCellDef="let element">{{element.syroup}}</td>
+          <td mat-cell *matCellDef="let element">{{element.syrup}}</td>
         </ng-container>
 
         <ng-container matColumnDef="options">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">   
-            <button mat-icon-button> <mat-icon>delete</mat-icon></button>
+            <button mat-icon-button (click)="deleteSezon(element.id)"> <mat-icon>delete</mat-icon></button>
           </td>
         </ng-container>
 

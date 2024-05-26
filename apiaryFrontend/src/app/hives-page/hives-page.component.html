@@ -49,8 +49,8 @@
           <ng-container matColumnDef="options">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">   
-              <button mat-icon-button (click)="editHive($event)"> <mat-icon>edit</mat-icon></button>
-              <button mat-icon-button (click)="deleteHive($event)"> <mat-icon>delete</mat-icon></button>
+              <button mat-icon-button (click)="editHive(element.id)"> <mat-icon>edit</mat-icon></button>
+              <button mat-icon-button (click)="deleteHive(element.id)"> <mat-icon>delete</mat-icon></button>
             </td>
           </ng-container>
 

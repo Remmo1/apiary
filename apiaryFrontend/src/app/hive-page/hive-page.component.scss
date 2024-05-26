@@ -35,6 +35,28 @@
 
 .infoText{
     margin-left: 10px;
+    width: 60px;
+    display: inline-block; 
+}
+
+.infoData{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.infoInput 
+{
+    margin-top: -10px;
+    padding: 5px; 
+    border: 1px solid #caa779;
+    border-radius: 5px; 
+}
+
+.infoInput:focus 
+{
+    outline: none; 
+    border: 2px solid;
+    border-color: rgb(227, 143, 25); 
 }
 
 .corps{

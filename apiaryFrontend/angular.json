@@ -35,6 +35,7 @@
             "assets": [
               "src/beeColorLogo.ico",
               "src/beeLogo.png",
+              "src/beeLogo.ico",
               "src/assets"
             ],
             "styles": [
@@ -100,6 +101,7 @@
             "assets": [
               "src/beeColorLogo.ico",
               "src/beeLogo.png",
+              "src/beeLogo.ico",
               "src/assets"
             ],
             "styles": [

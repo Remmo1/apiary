@@ -1,5 +1,10 @@
 package com.apiary.hive;
 
+import com.apiary.corp.Corp;
+import com.apiary.corp.CorpMapper;
+import com.apiary.corp.CorpRepository;
+import com.apiary.note.NoteMapper;
+import com.apiary.note.NoteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +15,11 @@ import java.util.List;
 public class HiveService {
 
     private final HiveRepository hiveRepository;
+    private final CorpRepository corpRepository;
+    private final NoteRepository noteRepository;
     private final HiveMapper hiveMapper;
+    private final CorpMapper corpMapper;
+    private final NoteMapper noteMapper;
 
     public List<HiveDTO> findAll() {
         return hiveRepository.findAll().stream().map(hiveMapper::toDto).toList();
@@ -29,18 +38,16 @@ public class HiveService {
         return hiveMapper.toDto(save);
     }
 
-    public HiveDTO update(HiveDTO hive) {
-        var found = hiveRepository.findById(hive.getId());
-        if (found.isPresent()) {
-            var hiveFromDb = found.get();
-            hiveFromDb.getCorps().clear();
-            hiveFromDb.getNotes().clear();
+    public HiveDTO update(HiveDTO hiveDTO) {
+        var toUpdate = hiveRepository.findById(hiveDTO.getId()).orElseThrow(() ->
+                new RuntimeException("Hive doesn't exist"));
+        toUpdate.setCorps(hiveDTO.getCorps().stream().map(corpMapper::toEntity).toList());
+        toUpdate.setNotes(hiveDTO.getNotes().stream().map(noteMapper::toEntity).toList());
 
-            var save = hiveRepository.save(hiveMapper.toEntity(hive));
-            return hiveMapper.toDto(save);
-        }
-        return null;
+        var updated = hiveRepository.save(toUpdate);
+        return hiveMapper.toDto(updated);
     }
+
 
     public boolean canUpdateOrDelete(Long hiveId) {
         var found = hiveRepository.findById(hiveId);

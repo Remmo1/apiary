@@ -48,8 +48,8 @@ export class HivesService {
     const tempCorps: { framesBlack: number; framesBrown: number; framesWhite: number; framesEmpty: number; }[] = [];
     hive.corps.forEach(corp => {tempCorps.push({framesBlack: corp.framesBlack, framesBrown: corp.framesBrown, framesWhite: corp.framesWhite, framesEmpty: corp.framesEmpty})});
     
-    const tempNotes: { date: Date; note: string; honey: number; syroup: number; }[] = [];
-    hive.notes.forEach(note => {tempNotes.push({date: note.date, note: note.text, honey: note.honey, syroup: note.syroup})});
+    const tempNotes: { date: Date; text: string; honey: number; syrup: number; }[] = [];
+    hive.notes.forEach(note => {tempNotes.push({date: note.date, text: note.text, honey: note.honey, syrup: note.syroup})});
 
     const data = {
       id: hive.id,

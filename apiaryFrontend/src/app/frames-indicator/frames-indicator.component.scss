@@ -1,0 +1,58 @@
+.frameIndicator{
+    display: flex;
+    flex-direction: row;
+}
+
+.frameLabel{
+  width: 100px;
+  display: inline-block; 
+}
+
+.rectangle-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .rectangle-black {
+    width: 10px;
+    height: 30px;
+    background-color: #472608;
+    margin: 2px;
+  }
+
+  .rectangle-brown {
+    width: 10px;
+    height: 30px;
+    background-color: #914d0e;
+    margin: 2px;
+  }
+
+  .rectangle-white {
+    width: 10px;
+    height: 30px;
+    background-color: #e8ac2a;
+    margin: 2px;
+  }
+
+  .rectangle-empty {
+    width: 10px;
+    height: 30px;
+    background-color: #ffffff;
+    margin: 2px;
+  }
+
+  .rectangleIndicatorPlus{
+    margin-top: 5px;
+    font-size: large;
+  }
+
+  .frameInput{
+    width: 50px;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #d4b180;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }

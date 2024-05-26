@@ -1,0 +1,29 @@
+
+.pageHeader{
+    display: flex;
+    flex-direction: row;
+
+    .goBackButton{
+        margin-top: -5px;
+        margin-left: -10px;
+        .large-icon{
+            font-size: 25px; 
+        }
+    }
+    margin-bottom: 10px;
+}
+.title{
+    font-size: 40px;
+    margin-left: 30px;
+}
+
+.optionButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    .addButton{
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+}

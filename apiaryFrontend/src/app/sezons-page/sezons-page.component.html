@@ -3,60 +3,56 @@
     <h1 class="title">
         Sezony
     </h1>
+</div>
+
+<div class="sezons">
+    <div class="optionButtons">
+      <button mat-raised-button class="addButton" (click)="openAddSezonDialog()">Dodaj nowy sezon</button>
+    </div>
+
+  <div class="sezonsTable">
+    <table mat-table [dataSource]="dataSource"  class="custom-mat-table">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef>Data rozpoczęcia</th>
+          <td mat-cell *matCellDef="let element">{{element.startDate | date:'dd/MM/yyyy'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef>Data zakończenia</th>
+          <td mat-cell *matCellDef="let element">{{element.endDate | date:'dd/MM/yyyy'}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="honey">
+          <th mat-header-cell *matHeaderCellDef>Ilość zebranego miodu</th>
+          <td mat-cell *matCellDef="let element">{{element.honey}}</td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="syroup">
+          <th mat-header-cell *matHeaderCellDef>Ilość dostarczonego syropu</th>
+          <td mat-cell *matCellDef="let element">{{element.syrup}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">   
+            <button mat-icon-button (click)="deleteSezon(element.id)"> <mat-icon>delete</mat-icon></button>
+          </td>
+        </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+   </table>
   </div>
-
-<table mat-table [dataSource]="dataSource">
-
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let element">{{element.id}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nazwa</th>
-      <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="startDate">
-      <th mat-header-cell *matHeaderCellDef>Data rozpoczęcia</th>
-      <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-    </ng-container>
-  
-    <ng-container matColumnDef="startHives">
-        <th mat-header-cell *matHeaderCellDef>Liczba uli przed sezonem</th>
-        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="endDate">
-        <th mat-header-cell *matHeaderCellDef>Data zakończenia</th>
-        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="endHives">
-        <th mat-header-cell *matHeaderCellDef>Liczba uli po sezonie</th>
-        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-      </ng-container>
-
-      
-      <ng-container matColumnDef="honey">
-        <th mat-header-cell *matHeaderCellDef>Ilość zebranego miodu</th>
-        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-      </ng-container>
-
-      
-      <ng-container matColumnDef="syroup">
-        <th mat-header-cell *matHeaderCellDef>Ilość dostarczonego syropu</th>
-        <td mat-cell *matCellDef="let element">{{element.progress}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element">   
-          <button mat-icon-button> <mat-icon>edit</mat-icon></button>
-          <button mat-icon-button> <mat-icon>delete</mat-icon></button>
-        </td>
-      </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
-  </table>
+</div>

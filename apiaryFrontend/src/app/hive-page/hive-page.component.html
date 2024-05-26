@@ -1,8 +1,28 @@
 <div class="pageHeader">
     <button mat-icon-button class="goBackButton" (click)="goToHivesPage()"> <mat-icon class="large-icon">undo</mat-icon></button>
     <h1 class="title">
-        Ul {{hiveId}}
+        Ul {{hive.id}}
     </h1>
+</div>
+
+<div class="basicInfo">
+    <div class="basicInfoHeader">
+        <h1 class="subtitle">
+            Informacje podstawowe
+        </h1>
+        <div class="deleteButton">
+            <button mat-raised-button class="saveButton" color="warn"  (click)="saveHive()">Zapisz zmiany</button>
+        </div>
+    </div>
+    
+    <div class="infoData">
+        <p class="infoText">Nazwa:</p>
+        <input class="infoInput" [(ngModel)]="hive.name"/>
+    </div>
+    <div class="infoData">
+        <p class="infoText">Królowa:</p>
+        <input class="infoInput" [(ngModel)]="hive.queen"/>
+    </div>
 </div>
 
 <div class="content">
@@ -16,16 +36,21 @@
                 <button mat-raised-button class="mainButton" (click)="addCorp()">Dodaj korpus</button>
             </div> 
         </div>   
-        <div *ngFor="let corp of corps">
-            <div class="corpBackground">
-                <div class="corpHeader">
-                    <h2 class="corpTitle">Korpus {{corp.id}}</h2>
-                </div>
-                <div class="frames">
-                    <app-frames-indicator [numberInput]=corp.framesBlack color="black" (valueChanged)="onValueChange($event)"></app-frames-indicator>
-                    <app-frames-indicator [numberInput]=corp.framesBrown color="brown" (valueChanged)="onValueChange($event)"></app-frames-indicator>
-                    <app-frames-indicator [numberInput]=corp.framesWhite color="white" (valueChanged)="onValueChange($event)"></app-frames-indicator>
-                    <app-frames-indicator [numberInput]=corp.framesEmpty color="empty" (valueChanged)="onValueChange($event)"></app-frames-indicator>
+        <div class="corpsContent">
+            <div *ngFor="let corp of corps">
+                <div class="corpBackground">
+                    <div class="corpHeader">
+                        <h2 class="corpTitle">Korpus {{corp.id}}</h2>
+                        <div class="deleteButton">
+                            <button mat-icon-button (click)="deleteCorp(corp.id)"> <mat-icon>delete</mat-icon></button>
+                        </div>
+                    </div>
+                    <div class="frames">
+                        <app-frames-indicator [(numberInput)]=corp.framesBlack color="black" ></app-frames-indicator>
+                        <app-frames-indicator [(numberInput)]=corp.framesBrown color="brown" ></app-frames-indicator>
+                        <app-frames-indicator [(numberInput)]=corp.framesWhite color="white" ></app-frames-indicator>
+                        <app-frames-indicator [(numberInput)]=corp.framesEmpty color="empty" ></app-frames-indicator>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,28 +64,29 @@
                 <button mat-raised-button class="mainButton" (click)="addNote()">Dodaj notatkę</button>
             </div>
         </div>
-        <table mat-table [dataSource]="dataSource">
+        <div class="notesTab">
+            <table mat-table [dataSource]="dataSource" class="custom-mat-table">
 
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef>Data pracy</th>
-              <td mat-cell *matCellDef="let element">{{element.date | date:'dd/MM/yyyy'}}</td>
-            </ng-container>
-          
-            <ng-container matColumnDef="note">
-              <th mat-header-cell *matHeaderCellDef>Opis pracy</th>
-              <td mat-cell *matCellDef="let element">{{element.text}}</td>
-            </ng-container>
+                <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Data pracy</th>
+                <td mat-cell *matCellDef="let element">{{element.date | date:'dd/MM/yyyy'}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="note">
+                <th mat-header-cell *matHeaderCellDef>Opis pracy</th>
+                <td mat-cell *matCellDef="let element">{{element.text}}</td>
+                </ng-container>
 
-              <ng-container matColumnDef="options">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let element">   
-                  <button mat-icon-button> <mat-icon>edit</mat-icon></button>
-                  <button mat-icon-button> <mat-icon>delete</mat-icon></button>
-                </td>
-              </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
-        </table>
+                <ng-container matColumnDef="options">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">   
+                    <button mat-icon-button (click)="deleteNote(element.id)"> <mat-icon>delete</mat-icon></button>
+                    </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+            </table>
+        </div>
     </div>
 </div>

@@ -12,9 +12,20 @@ import { FormsModule } from '@angular/forms';
 })
 export class FramesIndicatorComponent implements OnInit{
 
+  private _numberInput = 0;
   @Input() color: string = 'black'; 
-  @Input() numberInput = 0; 
-  @Output() valueChanged: EventEmitter<number> = new EventEmitter<number>();
+
+  @Input() 
+  get numberInput(): number {
+    return this._numberInput;
+  }
+
+  set numberInput(value: number) {
+    this._numberInput = value;
+    this.onInputChange();
+  }
+
+  @Output() numberInputChange: EventEmitter<number> = new EventEmitter<number>();
   
   numberOfRectangles: number = 0;
   rectangles: number[] = [];
@@ -32,7 +43,8 @@ export class FramesIndicatorComponent implements OnInit{
     this.emitValue()
   }
 
+
   private emitValue(): void {
-    this.valueChanged.emit(this.numberInput); 
+    this.numberInputChange.emit(this.numberInput); 
   }
 }

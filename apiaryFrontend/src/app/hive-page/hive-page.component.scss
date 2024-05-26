@@ -18,26 +18,75 @@
 }
 .content{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content:left;
+}
+
+.basicInfo{
+    margin-bottom: 20px;
+}
+
+.basicInfoHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+}
+
+.infoText{
+    margin-left: 10px;
+    width: 60px;
+    display: inline-block; 
+}
+
+.infoData{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.infoInput 
+{
+    margin-top: -10px;
+    padding: 5px; 
+    border: 1px solid #caa779;
+    border-radius: 5px; 
+}
+
+.infoInput:focus 
+{
+    outline: none; 
+    border: 2px solid;
+    border-color: rgb(227, 143, 25); 
 }
 
 .corps{
     width: 360px;
+    margin-bottom: 20px;
 }
 .corpsHeader{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 90vw;
+
 }
+
+.corpsContent{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90vw;
+}
+
 .corpBackground{
     background-color: #f8e2a9;
     padding: 20px;
-    
     border-radius: 10px;
     margin-bottom: 20px;
-    width: 360px;
+    margin-left: 20px;
+    width: 400px;
     border:  2px solid #d4b180;
+    box-sizing: border-box;
 }
 .addButton{
     display: flex;
@@ -45,6 +94,9 @@
     justify-content: flex-end;
 }
 .corpHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 10px;
 }
 .corpTitle{
@@ -57,12 +109,22 @@
 }
 
 .notes{
-    margin-left: 180px;
-    width: 700px;
+    min-width: 700px;
+    max-width: 80vw;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .notesHeader{
+    width: 90vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+.notesTab{
+    margin-left: 40px;
+}
+

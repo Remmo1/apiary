@@ -37,10 +37,10 @@
             </div> 
         </div>   
         <div class="corpsContent">
-            <div *ngFor="let corp of corps">
+            <div *ngFor="let corp of corps; let i = index">
                 <div class="corpBackground">
                     <div class="corpHeader">
-                        <h2 class="corpTitle">Korpus {{corp.id}}</h2>
+                        <h2 class="corpTitle">Korpus {{i + 1}}</h2>
                         <div class="deleteButton">
                             <button mat-icon-button (click)="deleteCorp(corp.id)"> <mat-icon>delete</mat-icon></button>
                         </div>

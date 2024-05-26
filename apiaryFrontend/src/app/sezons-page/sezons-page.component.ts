@@ -48,6 +48,10 @@ export class SezonsPageComponent implements OnInit{
       this.sezonsService.createSezon(new Sezon(result.name, result.startDate, result.endDate, 0, 0)).subscribe(result => {
         this.dataSource.push(result);
         this.dataSource = [...this.dataSource];
+        this.sezonsService.getSezons().subscribe(result => {
+          if(result )
+            this.dataSource = result;
+        });
       });
     });
   }

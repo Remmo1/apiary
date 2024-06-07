@@ -8,13 +8,15 @@ import { Observable, catchError, of } from 'rxjs';
 })
 export class SezonsService {
 
-  private apiUrl = 'http://localhost:8080/api/seasons';  
+  private apiUrl = process.env['SEASON_URL'] || '';  
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    console.log(this.apiUrl);
+  }
 
   // Create a new sezon
   createSezon(sezon: Sezon): Observable<Sezon> {

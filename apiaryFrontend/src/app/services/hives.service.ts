@@ -7,13 +7,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HivesService {
-  private apiUrl = 'http://localhost:8080/api/hives';
+  private apiUrl = process.env['HIVE_URL'] || '';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    console.log(this.apiUrl);
+  }
 
   // Create a new hive
   createHive(hive: Hive): Observable<Hive> {

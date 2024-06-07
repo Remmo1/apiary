@@ -11,6 +11,9 @@ spring:
     hibernate:
       ddl-auto: update
 
+frontend:
+  address: http://localhost:4200
+
 server:
   port: 8080
 

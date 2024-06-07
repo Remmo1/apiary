@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HivesService {
-  private apiUrl = 'http://localhost:8080/api/hives';
+  private apiUrl = window.location.protocol + '//' + window.location.hostname + ':8080/api/hives';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

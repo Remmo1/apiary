@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: angular-config-map
+data:
+  hive: http://localhost:8080/api/hives
+  season: http://localhost:8080/api/seasons

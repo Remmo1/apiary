@@ -17,4 +17,4 @@ CMD ["npm", "start"]
 
 # docker image build -t <image_name>:<tag> <path>
 # docker image build -t remmo1/apiary-frontend:0.0.1-SNAPSHOT .
-# docker run -p 4200:4200 remmo1/apiary-frontend:0.0.1-SNAPSHOT
+# docker run --build-arg HIVE_URL=http://localhost:8080/api/hives --build-arg SEASON_URL=http://localhost:8080/api/seasons -p 4200:4200 remmo1/apiary-frontend:0.0.1-SNAPSHOT

@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/seasons")
 @AllArgsConstructor
+@CrossOrigin
 public class SeasonController {
 
     private final SeasonService seasonService;

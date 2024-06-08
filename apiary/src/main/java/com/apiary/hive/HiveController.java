@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/hives")
 @AllArgsConstructor
+@CrossOrigin
 public class HiveController {
 
     private final HiveService hiveService;

@@ -8,7 +8,7 @@ import { Observable, catchError, of } from 'rxjs';
 })
 export class SezonsService {
 
-  private apiUrl = 'http://localhost:8080/api/seasons';  
+  private apiUrl = window.location.protocol + '//' + window.location.hostname + ':8080/api/seasons';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

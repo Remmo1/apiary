@@ -1,0 +1,4 @@
+aws-deploy/.terraform
+aws-deploy/.terraform*
+aws-deploy/terraform*
+aws-deploy/keys

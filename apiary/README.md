@@ -277,3 +277,48 @@ WARNING: As mentioned above, honey and syrup is counted in GET method, not here.
 Responses:
 * 200 - Season deleted successfully
 * 404 - Season not found
+
+9. #### /api/works
+```
+[
+    {
+        "id": 1,
+        "idUla" : 1,
+        "name": "praca1",
+        "text": "praca1 wykonana na pasiece",
+        "date": "2024-03-20T00:00:00.000+00:00",
+        "honey": 20,
+        "syrup": 10
+    },
+    {
+        "id": 1,
+        "idUla" : -1, //praca nie powiązana z ulem
+        "name": "praca2",
+        "text": "praca2 wykonana na pasiece",
+        "date": "2024-03-20T00:00:00.000+00:00",
+        "honey": 20,
+        "syrup": 10
+    },
+]
+```
+
+10. #### /api/works/{id}
+```
+[
+    {
+        "id": 1,
+        "idUla" : 1,
+        "name": "praca1",
+        "text": "praca1 wykonana na pasiece",
+        "date": "2024-03-20T00:00:00.000+00:00",
+        "honey": 20,
+        "syrup": 10
+    },
+]
+```
+
+11. #### /api/works/{id}
+Delete work:
+
+Usunięcie ula powoduje usunięcie prac do niego przypisanych.
+Usunięcie pracy nie wywołuje dodatkowych efektów.

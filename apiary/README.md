@@ -279,46 +279,121 @@ Responses:
 * 404 - Season not found
 
 9. #### /api/works
+* Description: This endpoint allows you to retrieve information about works (notes).
+* Method: GET
+* Parameters: None
+
 ```
 [
     {
-        "id": 1,
-        "idUla" : 1,
-        "name": "praca1",
-        "text": "praca1 wykonana na pasiece",
-        "date": "2024-03-20T00:00:00.000+00:00",
-        "honey": 20,
-        "syrup": 10
+        "id": 50,
+        "date": "2024-07-17T22:00:00.000+00:00",
+        "name": null,
+        "text": "Zebrano miód",
+        "hiveId": 4,
+        "honey": 6,
+        "syrup": 3
     },
     {
-        "id": 1,
-        "idUla" : -1, //praca nie powiązana z ulem
-        "name": "praca2",
-        "text": "praca2 wykonana na pasiece",
-        "date": "2024-03-20T00:00:00.000+00:00",
-        "honey": 20,
-        "syrup": 10
-    },
+        "id": 87,
+        "date": "2024-12-05T12:00:00.000+00:00",
+        "name": "pylek_2",
+        "text": "Zebrano pylek",
+        "hiveId": -1,
+        "honey": 2,
+        "syrup": 3
+    }
 ]
 ```
 
 10. #### /api/works/{id}
+* Description: This endpoint allows you to retrieve information about one work (note).
+* Method: GET
+* Parameters: Id of the note
+
 ```
 [
     {
-        "id": 1,
-        "idUla" : 1,
-        "name": "praca1",
-        "text": "praca1 wykonana na pasiece",
-        "date": "2024-03-20T00:00:00.000+00:00",
-        "honey": 20,
-        "syrup": 10
-    },
+        "id": 85,
+        "date": "2024-12-05T12:00:00.000+00:00",
+        "name": "pylek_2",
+        "text": "Zebrano pylek",
+        "hiveId": 2,
+        "honey": 2,
+        "syrup": 3
+    }
 ]
 ```
 
-11. #### /api/works/{id}
-Delete work:
+Work (note) with the given id doesn't exist: 404 Not Found
 
-Usunięcie ula powoduje usunięcie prac do niego przypisanych.
-Usunięcie pracy nie wywołuje dodatkowych efektów.
+11. #### /api/works
+* Description: Add new work (note)
+* Method: POST
+* Parameters: None
+* Body:
+```
+{
+    "date": "2024-12-05T12:00:00.000+00:00",
+    "name": "pylek_3",
+    "text": "Zebrano pylek z pasieki",
+    "hiveId": 1,
+    "honey": 2,
+    "syrup": 3
+}
+```
+
+When hive with the given Id doesn't exists, there's no error. In response there will be -1 in hiveId.
+
+Example response:
+```
+{
+    "id": 89,
+    "date": "2024-12-05T12:00:00.000+00:00",
+    "name": "pylek_3",
+    "text": "Zebrano pylek z pasieki",
+    "hiveId": 1,
+    "honey": 2,
+    "syrup": 3
+}
+```
+
+12. #### /api/works/{id}
+* Description: Edit existing work (note)
+* Method: PUT
+* Parameters: Id of the work (note)
+* Body:
+```
+{
+    "date": "2024-07-17T22:00:00.000+00:00",
+    "name": "Praca przy miodzie",
+    "text": "Zebrano miód",
+    "hiveId": 4,
+    "honey": 6,
+    "syrup": 3
+}
+```
+
+BE CAREFUL!!!! 
+You can change hiveId as well, without any problems. If the given hive id doesn't exists then you'll receive -1.
+
+Example response:
+```
+{
+    "id": 50,
+    "date": "2024-07-17T22:00:00.000+00:00",
+    "name": "Praca przy miodzie",
+    "text": "Zebrano miód",
+    "hiveId": 4,
+    "honey": 6,
+    "syrup": 3
+}
+```
+13. #### /api/works/{id}
+* Description: Delete existing work (note)
+* Method: DELETE
+* Parameters: Id of the work (note)
+
+Responses:
+* 200 - Work (note) deleted successfully
+* 404 - Work (note) not found

@@ -14,6 +14,7 @@ public class Note {
     private Long id;
 
     private Date date;
+    private String name;
     private String text;
     private int honey;
     private int syrup;

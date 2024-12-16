@@ -25,4 +25,8 @@ goToSezonsPage() {
 goToWorksPage() {
   this.router.navigate(['/works']);
 }
+
+goToHelpPage() {
+  this.router.navigate(['/help']);
+}
 }

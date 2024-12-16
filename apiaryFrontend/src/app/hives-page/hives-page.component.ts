@@ -8,6 +8,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddHiveModalComponent } from '../add-hive-modal/add-hive-modal.component';
 import { Hive } from '../models/hive';
 import { HivesService } from '../services/hives.service';
+import { HelpModalHivesComponent } from '../help-modal-hives/help-modal-hives.component';
 
 @Component({
   selector: 'app-hives-page',
@@ -23,6 +24,7 @@ export class HivesPageComponent implements OnInit{
 
   constructor(private router: Router, public dialog: MatDialog, private hivesService :HivesService) { }
 
+  hives : Hive[] = [];
   dataSource : Hive[] = [];
   tableColumns = ['id', 'name', 'queen', 'frames', 'corps','options'];
 
@@ -30,6 +32,7 @@ export class HivesPageComponent implements OnInit{
   {
     this.hivesService.getHives().subscribe(hives => {
       this.dataSource = hives;
+      this.hives = hives;
       this.countApiaryParameters();
     });
   }
@@ -66,6 +69,12 @@ export class HivesPageComponent implements OnInit{
     });
   }
 
+  openHelpDialog() : void {
+    const dialogRef = this.dialog.open(HelpModalHivesComponent, {
+      width: '500px',
+    });
+  }
+
   countFramesInHive(hive: Hive) : number {
     if(hive.corps) {
       let frames = 0;
@@ -91,6 +100,7 @@ export class HivesPageComponent implements OnInit{
     this.hivesService.deleteHive(id).subscribe(() => {
       this.dataSource = this.dataSource.filter(hive => hive.id !== id);
       this.dataSource = [...this.dataSource];
+      this.hives = this.hives.filter(hive => hive.id !== id);
       this.countApiaryParameters();
     });
   }
@@ -99,5 +109,19 @@ export class HivesPageComponent implements OnInit{
   editHive(id: number)
   {
     this.router.navigate(['/hive', id]);
+  }
+
+  search(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    if(searchTerm !== '') {
+    const term = searchTerm.toLowerCase();
+    this.dataSource = this.hives.filter(item =>
+      item.name.toLowerCase().includes(term)
+    );
+    }
+    else
+    {
+      this.dataSource = this.hives;
+    }
   }
 }

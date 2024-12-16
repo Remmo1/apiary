@@ -41,3 +41,28 @@
     margin-bottom: 100px;
     margin-left: 40px;
 }
+//search button
+
+.search{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    margin-bottom: 20px;
+    margin-left: 650px;
+}
+
+.infoInput 
+{
+    margin-top: -10px;
+    padding: 10px; 
+    border: 1px solid #caa779;
+    border-radius: 5px; 
+}
+
+.infoInput:focus 
+{
+    outline: none; 
+    border: 2px solid;
+    border-color: rgb(227, 143, 25); 
+}
+//

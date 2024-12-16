@@ -3,12 +3,18 @@
     <h1 class="title">
         Sezony
     </h1>
+    <button mat-icon-button class="goBackButton" (click)="openHelpDialog()"> <mat-icon class="large-icon">help</mat-icon></button>
+
 </div>
 
 <div class="sezons">
     <div class="optionButtons">
       <button mat-raised-button class="addButton" (click)="openAddSezonDialog()">Dodaj nowy sezon</button>
     </div>
+
+  <div class="search">
+    <input class="infoInput" type="text" placeholder="Szukaj po nazwie" (input)="search($event)">
+  </div>
 
   <div class="sezonsTable">
     <table mat-table [dataSource]="dataSource"  class="custom-mat-table">

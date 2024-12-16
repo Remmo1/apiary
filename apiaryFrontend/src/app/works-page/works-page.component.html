@@ -3,15 +3,22 @@
     <h1 class="title">
         Prace
     </h1>
+    <button mat-icon-button class="goBackButton" (click)="openHelpDialog()"> <mat-icon class="large-icon">help</mat-icon></button>
+
   </div>
 
   <div class="hives">
     <div class="hivesHeader">
-      <h1 class="subtitle">Prace</h1>
+      <h1 class="subtitle"></h1>
       <div class="optionButtons">
         <button mat-raised-button class="addButton" (click)="openAddWorkDialog()">Dodaj pracę</button>
       </div>
     </div>
+    
+    <div class="search">
+      <input class="infoInput" type="text" placeholder="Szukaj po miejscu" (input)="search($event)">
+    </div>
+
     <div class="hivesTable">
         <table mat-table [dataSource]="dataSource"  class="custom-mat-table">
   

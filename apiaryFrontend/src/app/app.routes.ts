@@ -5,12 +5,14 @@ import { SezonsPageComponent } from './sezons-page/sezons-page.component';
 import { HivePageComponent } from './hive-page/hive-page.component';
 import { WorksPageComponent } from './works-page/works-page.component';
 import { WorkPageComponent } from './work-page/work-page.component';
+import { HelpPageComponent } from './help-page/help-page.component';
 
 export const routes: Routes = [
     { path: 'home', component: StartPageComponent },
     { path: 'hives', component: HivesPageComponent },
     { path: 'hive/:id', component: HivePageComponent },
     { path: 'sezons', component: SezonsPageComponent },
+    { path: 'help', component: HelpPageComponent },
     { path: 'works', component: WorksPageComponent },
     { path: 'work/:id', component: WorkPageComponent },
     { path: '**', component: StartPageComponent },

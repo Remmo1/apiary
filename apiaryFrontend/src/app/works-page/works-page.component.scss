@@ -1,0 +1,57 @@
+
+.pageHeader{
+    display: flex;
+    flex-direction: row;
+
+    .goBackButton{
+        margin-top: -5px;
+        margin-left: -10px;
+        .large-icon{
+            font-size: 25px; 
+        }
+    }
+    margin-bottom: 10px;
+}
+.title{
+    font-size: 40px;
+    margin-left: 30px;
+}
+
+.optionButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    .addButton{
+        margin-bottom: 10px;
+    }
+}
+.apiaryStats{
+    margin-bottom: 20px;
+}
+
+.infoText{
+    margin-left: 10px;
+}
+
+.hives{
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.hivesHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+
+}
+
+.hivesTable{
+    min-width: 700px;
+    max-width: 90vw;
+    margin-bottom: 100px;
+    margin-left: 40px;
+}

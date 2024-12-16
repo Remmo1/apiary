@@ -21,4 +21,8 @@ goToHivesPage() {
 goToSezonsPage() {
   this.router.navigate(['/sezons']);
 }
+
+goToWorksPage() {
+  this.router.navigate(['/works']);
+}
 }

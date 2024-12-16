@@ -1,0 +1,45 @@
+<div class="pageHeader">
+    <button mat-icon-button class="goBackButton" (click)="goToStartPage()"> <mat-icon class="large-icon">undo</mat-icon></button>
+    <h1 class="title">
+        Prace
+    </h1>
+  </div>
+
+  <div class="hives">
+    <div class="hivesHeader">
+      <h1 class="subtitle">Prace</h1>
+      <div class="optionButtons">
+        <button mat-raised-button class="addButton" (click)="openAddWorkDialog()">Dodaj pracę</button>
+      </div>
+    </div>
+    <div class="hivesTable">
+        <table mat-table [dataSource]="dataSource"  class="custom-mat-table">
+  
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="hiveId">
+            <th mat-header-cell *matHeaderCellDef>Miejsce</th>
+            <td mat-cell *matCellDef="let element">{{element.hiveId}}</td>
+          </ng-container>
+        
+          <ng-container matColumnDef="text">
+            <th mat-header-cell *matHeaderCellDef>Notatka</th>
+            <td mat-cell *matCellDef="let element">{{element.text}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">   
+              <button mat-icon-button (click)="editWork(element.id)"> <mat-icon>edit</mat-icon></button>
+              <button mat-icon-button (click)="deleteWork(element.id)"> <mat-icon>delete</mat-icon></button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+        </table>      
+      </div>
+  </div>

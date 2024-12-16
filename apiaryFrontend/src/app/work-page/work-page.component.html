@@ -1,0 +1,34 @@
+<div class="pageHeader">
+    <button mat-icon-button class="goBackButton" (click)="goToWorksPage()"> <mat-icon class="large-icon">undo</mat-icon></button>
+    <h1 class="title">
+        Praca {{work.id}}
+    </h1>
+</div>
+
+<div class="basicInfo">
+    <div class="basicInfoHeader">
+        <h1 class="subtitle">
+            Informacje o pracy
+        </h1>
+        <div class="deleteButton">
+            <button mat-raised-button class="saveButton" color="warn"  (click)="saveWork()">Zapisz zmiany</button>
+        </div>
+    </div>
+    
+    <div class="infoData">
+        <p class="infoText">Data:</p>
+        <input matInput [matDatepicker]="datePicker" [(ngModel)]="work.date">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+    </div>
+    <div class="infoData">
+        <p class="infoText">Miejsce:</p>
+        <input class="infoInput" [(ngModel)]="work.hiveId"/>
+    </div>
+
+    <div class="infoData">
+        <p class="infoText">Notatka:</p>
+        <textarea class="infoInput" rows="6"  matInput [(ngModel)]="work.text">
+        </textarea>
+    </div>
+</div>

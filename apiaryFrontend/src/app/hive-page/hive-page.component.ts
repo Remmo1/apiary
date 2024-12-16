@@ -72,6 +72,11 @@ export class HivePageComponent implements OnInit{
     this.dataSource = [...this.dataSource];
   }
 
+  editNote(arg0: number) 
+  {
+    this.router.navigate(['/work', arg0]);
+  }
+
   addCorp() 
   {
     this.corps.push(new Corp(this.corpsCount + 1, 0, 0, 0, 0, this.hive.id));
@@ -88,6 +93,6 @@ export class HivePageComponent implements OnInit{
     this.hive.corps = this.corps;
     this.hive.notes = this.dataSource;
     this.hivesService.updateHive(this.hive.id, this.hive).subscribe(result => {console.log(result);} );
-
+    this.router.navigate(['/hives']);
   }
 }

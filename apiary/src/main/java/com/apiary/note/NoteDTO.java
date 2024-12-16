@@ -10,6 +10,7 @@ import java.util.Date;
 public class NoteDTO {
     private Long id;
     private Date date;
+    private String name;
     private String text;
     private Long hiveId;
     private int honey;

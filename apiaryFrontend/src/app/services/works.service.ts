@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { Note } from '../models/note';
+import { Note, Work } from '../models/note';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class WorksService {
 
   
     // Create a new work
-    createWork(work: Note): Observable<Note> {
+    createWork(work: Work): Observable<Note> {
       return this.http.post<Note>(this.apiUrl, work, this.httpOptions)
         .pipe(
           catchError(this.handleError<Note>('createWork'))

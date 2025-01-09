@@ -39,8 +39,8 @@ public class HiveService {
     }
 
     public HiveDTO update(HiveDTO hiveDTO) {
-        var toUpdate = hiveRepository.findById(hiveDTO.getId()).orElseThrow(() ->
-                new RuntimeException("Hive doesn't exist"));
+        var toUpdate = hiveMapper.toEntity(hiveDTO);
+
         toUpdate.setCorps(hiveDTO.getCorps().stream().map(corpMapper::toEntity).toList());
         toUpdate.setNotes(hiveDTO.getNotes().stream().map(noteMapper::toEntity).toList());
 

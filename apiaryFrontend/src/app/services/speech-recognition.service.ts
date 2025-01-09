@@ -12,7 +12,8 @@ export class SpeechRecognitionService {
     const SpeechRecognition = (window as any).webkitSpeechRecognition;
     this.recognition = new SpeechRecognition();
     this.recognition.lang = 'pl-PL';
-    this.recognition.interimResults = false;
+    this.recognition.interimResults = true;
+    this.recognition.continuous = true
   }
 
   startRecognition(): void {
@@ -27,7 +28,10 @@ export class SpeechRecognitionService {
 
   onResult(callback: (text: string) => void): void {
     this.recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
+      let transcript = '';
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        transcript += event.results[i][0].transcript;
+      }
       callback(transcript);
     };
   }

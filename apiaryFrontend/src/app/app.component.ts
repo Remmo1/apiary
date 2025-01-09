@@ -23,7 +23,8 @@ export class AppComponent {
     this.speechRecognitionService.onResult((text: string) => {
     this.text = text;
     this.isListening = false;
-  });}
+  });
+}
 
   startListening(): void {
     this.speechRecognitionService.startRecognition();

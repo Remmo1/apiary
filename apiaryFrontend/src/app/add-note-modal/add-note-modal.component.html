@@ -8,12 +8,18 @@
     <mat-datepicker #datePicker></mat-datepicker>
   </mat-form-field>
 
+  <div class="noteField">
   <mat-form-field appearance="fill">
     <mat-label>Notatka</mat-label>
-    <textarea rows="4" matInput [(ngModel)]="data.note">
+    <textarea rows="4" matInput [(ngModel)]="data.note" #noteArea>
     </textarea>
   </mat-form-field>
-  
+  <div class="speechButtons">
+    <button mat-icon-button class="speechButton" (click)="recording()"> <mat-icon class="large-icon">microphone</mat-icon></button>
+    <button mat-icon-button class="speechButton" (click)="stop()"> <mat-icon class="large-icon">stop</mat-icon></button>
+    <button mat-icon-button class="speechButton" (click)="hearing()"> <mat-icon class="large-icon">waves</mat-icon></button>
+  </div>
+</div>
   <mat-form-field appearance="fill">
     <mat-label>Zebrany miód [l]</mat-label>
     <input type="number" matInput [(ngModel)]="data.honey">

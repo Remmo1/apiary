@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 export interface DialogData {
   date: Date;
-  note: string;
+  text: string;
   honey: number;
   syroup: number;
 }

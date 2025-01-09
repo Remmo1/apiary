@@ -90,6 +90,8 @@ export class HivePageComponent implements OnInit{
 
   saveHive() 
   {
+    this.hive.name = this.hive.name;
+    this.hive.queen = this.hive.queen;
     this.hive.corps = this.corps;
     this.hive.notes = this.dataSource;
     this.hivesService.updateHive(this.hive.id, this.hive).subscribe(result => {console.log(result);} );

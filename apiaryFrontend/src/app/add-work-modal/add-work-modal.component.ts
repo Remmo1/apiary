@@ -7,6 +7,8 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { Hive } from '../models/hive';
 
 export interface DialogData {
   hiveId: number;
@@ -14,12 +16,16 @@ export interface DialogData {
   note: string;
   honey: number;
   syroup: number;
+  hivesNames: Map<number, string>;
+  hives: Hive[];
 }
 
 @Component({
   selector: 'app-add-work-modal',
   standalone: true,
-  imports: [CommonModule,    
+  imports: [
+    MatSelectModule,
+    CommonModule,    
     MatInputModule,   
       MatFormFieldModule,
       MatButtonModule,
@@ -38,5 +44,10 @@ export class AddWorkModalComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  
+  getHiveName(id: number) : string {
+    return this.data.hivesNames.get(id) || 'Praca ogólna';
   }
 }

@@ -1,5 +1,6 @@
+
 <div class="pageHeader">
-    <button mat-icon-button class="goBackButton" (click)="goToWorksPage()"> <mat-icon class="large-icon">undo</mat-icon></button>
+    <button mat-icon-button class="goBackButton" (click)="goBack()"> <mat-icon class="large-icon">undo</mat-icon></button>
     <h1 class="title">
         Praca {{work.id}}
     </h1>
@@ -16,19 +17,28 @@
     </div>
     
     <div class="infoData">
-        <p class="infoText">Data:</p>
-        <input matInput [matDatepicker]="datePicker" [(ngModel)]="work.date">
-        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-        <mat-datepicker #datePicker></mat-datepicker>
+        <p class="infoText">Data pracy:</p>
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="datePicker" [(ngModel)]="work.date" >
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
     </div>
     <div class="infoData">
-        <p class="infoText">Miejsce:</p>
-        <input class="infoInput" [(ngModel)]="work.hiveId"/>
+        <p class="infoText">Miejsce pracy:</p>
+        <mat-form-field appearance="fill">
+        <mat-select [(ngModel)]="work.hiveId">
+            <mat-option [value]="-1">{{getHiveName(-1)}}</mat-option>
+            <mat-option *ngFor="let hive of hives" [value]="hive.id">{{getHiveName(hive.id)}}</mat-option>
+          </mat-select>
+        </mat-form-field>
     </div>
 
     <div class="infoData">
         <p class="infoText">Notatka:</p>
-        <textarea class="infoInput" rows="6"  matInput [(ngModel)]="work.text">
-        </textarea>
+        <mat-form-field appearance="fill">
+            <textarea class="infoInput" rows="6"  matInput [(ngModel)]="work.text">
+            </textarea>
+        </mat-form-field>
     </div>
 </div>

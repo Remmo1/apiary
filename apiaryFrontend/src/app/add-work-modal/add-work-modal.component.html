@@ -2,9 +2,11 @@
 <div mat-dialog-content class="content">
 
     <mat-form-field appearance="fill">
-        <mat-label>Numer ula</mat-label>
-        <textarea rows="1" matInput [(ngModel)]="data.hiveId">
-        </textarea>
+        <mat-label>Miejsce pracy</mat-label>
+   <mat-select [(ngModel)]="data.hiveId">
+    <mat-option [value]="-1">{{getHiveName(-1)}}</mat-option>
+    <mat-option *ngFor="let hive of data.hives" [value]="hive.id">{{getHiveName(hive.id)}}</mat-option>
+  </mat-select>
     </mat-form-field>
 
   <mat-form-field appearance="fill">

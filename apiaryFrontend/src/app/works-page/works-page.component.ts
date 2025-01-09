@@ -10,6 +10,8 @@ import { AddWorkModalComponent } from '../add-work-modal/add-work-modal.componen
 import { Note, Work } from '../models/note';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HelpModalWorksComponent } from '../help-modal-works/help-modal-works.component';
+import { HivesService } from '../services/hives.service';
+import { Hive } from '../models/hive';
 
 @Component({
   selector: 'app-works-page',
@@ -19,17 +21,32 @@ import { HelpModalWorksComponent } from '../help-modal-works/help-modal-works.co
   styleUrls: ['./works-page.component.scss']
 })
 export class WorksPageComponent  implements OnInit{
-constructor(private router: Router, public dialog: MatDialog, private worksService : WorksService) { }
+constructor(private router: Router, public dialog: MatDialog, private worksService : WorksService, private hivesService : HivesService) { }
 
   notes : Note[] = [];
   dataSource : Note[] = [];
-  tableColumns = ['date', 'hiveId', 'text'];
+  tableColumns = ['date', 'hiveId', 'text', 'options'];
+  hivesNames: Map<number, string> = new Map();
+  hives: Hive[] = [];
+
   ngOnInit(): void 
   {
     this.worksService.getWorks().subscribe(works => {
       this.dataSource = works;
       this.notes = works;
     });
+
+    this.hivesService.getHives().subscribe(hives => {
+      this.hives = hives;
+      this.hivesNames.set(-1, 'Praca ogólna');
+      hives.forEach(hive => {
+        this.hivesNames.set(hive.id, hive.name);
+      });
+    });
+  }
+
+  getHiveName(id: number) : string {
+    return this.hivesNames.get(id) || 'Praca ogólna';
   }
 
   goToStartPage() 
@@ -40,10 +57,11 @@ constructor(private router: Router, public dialog: MatDialog, private worksServi
    openAddWorkDialog() : void {
       const dialogRef = this.dialog.open(AddWorkModalComponent, {
         width: '300px',
-        data: {date: '', note: '', hiveId: '', honey: '', syroup: '' }
+        data: {date: new Date(), note: '', hiveId: '', honey: '', syroup: '', hivesNames: this.hivesNames, hives: this.hives},
       });
       
       dialogRef.afterClosed().subscribe(result => {
+        if(this.dataSource){
         this.worksService.createWork(new Work(result.date, ":)", result.note, result.hiveId, result.honey, result.syroup)).subscribe(result => {
           if(result instanceof Error){
             console.log(result);
@@ -54,7 +72,9 @@ constructor(private router: Router, public dialog: MatDialog, private worksServi
           }
   
         });
+      }
       });
+  
     }
 
     deleteWork(id: number) 
@@ -69,7 +89,7 @@ constructor(private router: Router, public dialog: MatDialog, private worksServi
   
     editWork(id: number)
     {
-      this.router.navigate(['/works', id]);
+      this.router.navigate(['/work', id], {queryParams:{backPath: this.router.url}});
     }
 
     
@@ -78,7 +98,7 @@ constructor(private router: Router, public dialog: MatDialog, private worksServi
     if(searchTerm !== '') {
     const term = searchTerm.toLowerCase();
     this.dataSource = this.notes.filter(item =>
-      item.hiveId.toString().includes(term)
+      this.getHiveName(item.hiveId).toLowerCase().includes(term)
     );
     }
     else

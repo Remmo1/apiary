@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 export interface DialogData {
   date: Date;
-  text: string;
+  note: string;
   honey: number;
   syroup: number;
 }
@@ -22,7 +22,8 @@ export interface DialogData {
 @Component({
   selector: 'app-add-note-modal',
   standalone: true,
-  imports: [CommonModule, 
+  imports: [
+    CommonModule, 
     MatInputModule,   
     MatFormFieldModule,
     MatButtonModule,
@@ -42,4 +43,5 @@ export class AddNoteModalComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 }

@@ -6,13 +6,14 @@ import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FramesIndicatorComponent } from "../frames-indicator/frames-indicator.component";
 import { Corp } from '../models/corp';
-import { Note } from '../models/note';
+import { Note, Work } from '../models/note';
 import { Hive } from '../models/hive';
 import { HivesService } from '../services/hives.service';
 import { AddNoteModalComponent } from '../add-note-modal/add-note-modal.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { WorksService } from '../services/works.service';
 
 @Component({
     selector: 'app-hive-page',
@@ -29,7 +30,7 @@ export class HivePageComponent implements OnInit{
   corps: Corp[] = [];
   dataSource: Note[] = [];
   tableColumns = ['date', 'note', 'options'];
-  constructor(private router: Router, private hivesService: HivesService, public dialog: MatDialog) { }
+  constructor(private router: Router, private hivesService: HivesService, public dialog: MatDialog, private worksService : WorksService) { }
 
   ngOnInit(): void {
     this.hivesService.getHive(Number(this.router.url.split('/')[2])).subscribe(hive => {
@@ -50,31 +51,39 @@ export class HivePageComponent implements OnInit{
   {
     const dialogRef = this.dialog.open(AddNoteModalComponent, {
       width: '300px',
-      data: { syroup: 0, honey: 0, date: new Date()}
+      data: { date: new Date(), note: '', honey: 0, syroup: 0,}
     });
     
     dialogRef.afterClosed().subscribe(result => {
       if(this.dataSource){
-        this.dataSource.push(new Note(this.notesCount, result.date, result.note, this.hive.id, result.honey, result.syroup));
-        this.dataSource = [...this.dataSource];
-        this.notesCount++;
+        this.worksService.createWork(new Work(result.date, ":)", result.note, this.hive.id, result.honey, result.syroup)).subscribe(result => {
+          if(result instanceof Error){
+            console.log(result);
+          }
+          else{
+            this.dataSource.push(result);
+            this.dataSource = [...this.dataSource];
+          }
+  
+        });
       }
-      else{
-        console.log(result);
-      }
+
       });
 
   }
 
-  deleteNote(arg0: number) 
+  deleteNote(id: number) 
   {
-    this.dataSource = this.dataSource.filter(note => note.id !== arg0);
-    this.dataSource = [...this.dataSource];
+    this.worksService.deleteWork(id).subscribe(() => {
+      this.dataSource = this.dataSource.filter(work => work.id !== id);
+      this.dataSource = [...this.dataSource];
+      //this.notes = this.notes.filter(work => work.id !== id);;
+    });
   }
 
   editNote(arg0: number) 
   {
-    this.router.navigate(['/work', arg0]);
+    this.router.navigate(['/work', arg0], {queryParams:{backPath: this.router.url}});
   }
 
   addCorp() 

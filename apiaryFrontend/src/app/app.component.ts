@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { SpeechService } from './services/speech.service';
 import { SpeechRecognitionService } from './services/speech-recognition.service';
+import { GucioService } from './services/gucio.service';
 
 
 @Component({
@@ -19,28 +20,16 @@ export class AppComponent {
   isListening: boolean = false;
 
 
-  constructor(private speechService: SpeechService, private speechRecognitionService: SpeechRecognitionService) { 
-    this.speechRecognitionService.onResult((text: string) => {
-    this.text = text;
-    this.isListening = false;
-  });
+  constructor(private speechService: SpeechService, private speechRecognitionService: SpeechRecognitionService, private gucioService: GucioService) { 
 }
 
   startListening(): void {
-    this.speechRecognitionService.startRecognition();
+    this.gucioService.startRecognition();
     this.isListening = true;
   }
 
   stopListening(): void {
-    this.speechRecognitionService.stopRecognition();
+    this.gucioService.stopRecognition(true);
     this.isListening = false;
-  }
-  
-  speak(): void {
-    this.speechService.speak(this.text);
-  }
-
-  stop(): void {
-    this.speechService.stop();
   }
 }

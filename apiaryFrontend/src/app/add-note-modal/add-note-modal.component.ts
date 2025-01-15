@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, effect, ElementRef, Inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
@@ -39,11 +39,12 @@ export interface DialogData {
   templateUrl: './add-note-modal.component.html',
   styleUrls: ['./add-note-modal.component.scss']
 })
-export class AddNoteModalComponent {
+export class AddNoteModalComponent implements OnInit {
   isListening: boolean = false;
   isSpeaking: boolean = false;
   note: string = '';
   @ViewChild('noteArea') textAreaRef!: ElementRef<HTMLTextAreaElement>;
+  onEndSignal = this.speechRecognitionService.onEndSignal;
 
   constructor(
     public dialogRef: MatDialogRef<AddNoteModalComponent>,
@@ -53,19 +54,22 @@ export class AddNoteModalComponent {
   ) {  
     this.speechRecognitionService.onResult((text: string) => {
 
-    this.data.note = text;
+    this.note = this.speechRecognitionService.finalTranscript;
+    this.textAreaRef.nativeElement.value = this.note;
     this.isListening = false;
-    this.textAreaRef.nativeElement.value = this.data.note;
     console.log(this.data.note);
-    // if(this.note === '') {
-    //   this.note = text;
-    // }
-    // else
-    // {
-    //   this.note = this.note + text;
-    // }
-    //this.data.note = this.note;
-  });}
+  });
+    effect(() => {
+      if (this.onEndSignal()) {
+        this.data.note += this.note;
+      }
+    });
+  }
+
+  ngOnInit(): void 
+  {
+    this.recording();
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -87,14 +91,10 @@ export class AddNoteModalComponent {
       this.speechRecognitionService.startRecognition();
       this.isListening = true;
     }
-    else
-    {
-
-    }
   }
 
   stop(){
-    this.speechRecognitionService.stopRecognition();
+    this.speechRecognitionService.stopRecognition(true);
     this.isListening = false;
   }
 }

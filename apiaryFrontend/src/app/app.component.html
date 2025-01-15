@@ -6,9 +6,6 @@
 <div class="content">
   <router-outlet></router-outlet>
 </div>
- {{ text}}
-<button (click)="speak()">Speak</button>
-<button (click)="stop()">Stop</button>
 <button (click)="startListening()" [disabled]="isListening">Start Listening</button>
 <button (click)="stopListening()" [disabled]="!isListening">Stop Listening</button>
 

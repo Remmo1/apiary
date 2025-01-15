@@ -1,0 +1,6 @@
+#JSGF V1.0;
+grammar navigation;
+
+public <command> = (idź | przejdź) <section>;
+
+<section> = główna | ule | sezony;

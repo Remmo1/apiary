@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FramesIndicatorComponent } from "../frames-indicator/frames-indicator.component";
 import { Corp } from '../models/corp';
 import { Note } from '../models/note';
@@ -13,6 +13,8 @@ import { AddNoteModalComponent } from '../add-note-modal/add-note-modal.componen
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { GucioService } from '../services/gucio.service';
 
 @Component({
     selector: 'app-hive-page',
@@ -29,15 +31,36 @@ export class HivePageComponent implements OnInit{
   corps: Corp[] = [];
   dataSource: Note[] = [];
   tableColumns = ['date', 'note', 'options'];
-  constructor(private router: Router, private hivesService: HivesService, public dialog: MatDialog) { }
+  private routeSub: Subscription = new Subscription();
+
+  gucioService = inject(GucioService); 
+
+  commandSignal = this.gucioService.commandSignal;
+  
+  constructor(private router: Router, private route: ActivatedRoute,  private hivesService: HivesService, public dialog: MatDialog) { 
+
+    effect(() => { 
+      switch (this.commandSignal()) {
+        case 'add note':
+          this.addNote();
+          break;
+        default:
+          console.log('Command not recognized:', this.commandSignal());
+          
+          break;
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.hivesService.getHive(Number(this.router.url.split('/')[2])).subscribe(hive => {
-      this.hive = hive;
-      this.corps = hive.corps;
-      this.corpsCount = this.corps.length;
-      this.dataSource = hive.notes;
-      this.notesCount = this.dataSource.length;
+    this.routeSub = this.route.paramMap.subscribe(paramMap => {
+      this.hivesService.getHive(Number(this.router.url.split('/')[2])).subscribe(hive => {
+        this.hive = hive;
+        this.corps = hive.corps;
+        this.corpsCount = this.corps.length;
+        this.dataSource = hive.notes;
+        this.notesCount = this.dataSource.length;
+      });
     });
 }
   

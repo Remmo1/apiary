@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { GucioService } from '../services/gucio.service';
+import { SpeechRecognitionService } from '../services/speech-recognition.service';
 
 @Component({
     selector: 'app-hive-page',
@@ -37,7 +38,8 @@ export class HivePageComponent implements OnInit{
 
   commandSignal = this.gucioService.commandSignal;
   
-  constructor(private router: Router, private route: ActivatedRoute,  private hivesService: HivesService, public dialog: MatDialog) { 
+  constructor(private router: Router, private route: ActivatedRoute,  private hivesService: HivesService, public dialog: MatDialog, 
+    private gucio: GucioService, private speechRecognitionService: SpeechRecognitionService,) { 
 
     effect(() => { 
       switch (this.commandSignal()) {
@@ -85,6 +87,9 @@ export class HivePageComponent implements OnInit{
       else{
         console.log(result);
       }
+
+      this.speechRecognitionService.stopRecognition(true);
+      this.gucio.startRecognition();
       });
 
   }

@@ -8,15 +8,15 @@ export class SpeechRecognitionService {
   recognition: any;
   isListening: boolean = false;
   isManuallyStopped: boolean = false;
-  finalTranscript: string = '';
-  public onEndSignal = signal<boolean>(false);
+  //finalTranscript: string = '';
+  //public onEndSignal = signal<boolean>(false);
   
   constructor() {
     const SpeechRecognition = (window as any).webkitSpeechRecognition;
 
     this.recognition = new SpeechRecognition();
     this.recognition.lang = 'pl-PL';
-    this.recognition.interimResults = true;
+    //this.recognition.interimResults = true;
     this.recognition.continuous = true
 
     this.recognition.onend = () => {
@@ -24,7 +24,6 @@ export class SpeechRecognitionService {
         console.log('Speech recognition stopped by the browser, restarting...');
         this.restartRecognition();
       }
-      this.onEndSignal.set(true);
     };
   }
 
@@ -52,8 +51,6 @@ export class SpeechRecognitionService {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         transcript += event.results[i][0].transcript;
       }
-      console.log(transcript);
-      this.finalTranscript += transcript;
       callback(transcript);
     };
     // this.recognition.onresult = (event: any) => {

@@ -42,9 +42,9 @@ export interface DialogData {
 export class AddNoteModalComponent implements OnInit {
   isListening: boolean = false;
   isSpeaking: boolean = false;
-  note: string = '';
+  // note: string = '';
+  // dotNumber: number = 0;
   @ViewChild('noteArea') textAreaRef!: ElementRef<HTMLTextAreaElement>;
-  onEndSignal = this.speechRecognitionService.onEndSignal;
 
   constructor(
     public dialogRef: MatDialogRef<AddNoteModalComponent>,
@@ -52,18 +52,14 @@ export class AddNoteModalComponent implements OnInit {
     private speechService: SpeechService,
     private speechRecognitionService: SpeechRecognitionService,
   ) {  
+    this.data.note='';
     this.speechRecognitionService.onResult((text: string) => {
 
-    this.note = this.speechRecognitionService.finalTranscript;
-    this.textAreaRef.nativeElement.value = this.note;
+    this.data.note += text;
+    this.textAreaRef.nativeElement.value = this.data.note;
     this.isListening = false;
-    console.log(this.data.note);
+
   });
-    effect(() => {
-      if (this.onEndSignal()) {
-        this.data.note += this.note;
-      }
-    });
   }
 
   ngOnInit(): void 

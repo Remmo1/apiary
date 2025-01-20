@@ -99,7 +99,8 @@ export class GucioService{
   startRecognition(): void {
     this.recognition.start();
     this.isListening = true;
-
+    this.isManuallyStopped = false;
+    
     this.hivesService.getHives().subscribe(hives => {
       hives.forEach( hive => {
         console.log(hive);

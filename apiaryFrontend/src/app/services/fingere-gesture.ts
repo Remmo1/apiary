@@ -1,0 +1,99 @@
+import * as fingerpose from 'fingerpose';
+
+const oneFingerGesture = new fingerpose.GestureDescription('one_finger');
+oneFingerGesture.addCurl(
+  fingerpose.Finger.Index,
+  fingerpose.FingerCurl.NoCurl,
+  1.0
+);
+oneFingerGesture.addCurl(
+  fingerpose.Finger.Thumb,
+  fingerpose.FingerCurl.FullCurl,
+  1.0
+);
+oneFingerGesture.addCurl(
+  fingerpose.Finger.Middle,
+  fingerpose.FingerCurl.FullCurl,
+  1.0
+);
+oneFingerGesture.addCurl(
+  fingerpose.Finger.Ring,
+  fingerpose.FingerCurl.FullCurl,
+  1.0
+);
+oneFingerGesture.addCurl(
+  fingerpose.Finger.Pinky,
+  fingerpose.FingerCurl.FullCurl,
+  1.0
+);
+
+const thumbsDownGesture = new fingerpose.GestureDescription('thumbs_down');
+thumbsDownGesture.addCurl(
+  fingerpose.Finger.Index,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsDownGesture.addCurl(
+  fingerpose.Finger.Thumb,
+  fingerpose.FingerCurl.NoCurl,
+  0.5
+);
+thumbsDownGesture.addCurl(
+  fingerpose.Finger.Middle,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsDownGesture.addCurl(
+  fingerpose.Finger.Ring,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsDownGesture.addCurl(
+  fingerpose.Finger.Pinky,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsDownGesture.addDirection(
+  fingerpose.Finger.Thumb,
+  fingerpose.FingerDirection.VerticalDown,
+  1.0
+);
+
+const thumbsUpGesture = new fingerpose.GestureDescription('thumbs_up');
+thumbsUpGesture.addCurl(
+  fingerpose.Finger.Index,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsUpGesture.addCurl(
+  fingerpose.Finger.Thumb,
+  fingerpose.FingerCurl.NoCurl,
+  0.5
+);
+thumbsUpGesture.addCurl(
+  fingerpose.Finger.Middle,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsUpGesture.addCurl(
+  fingerpose.Finger.Ring,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsUpGesture.addCurl(
+  fingerpose.Finger.Pinky,
+  fingerpose.FingerCurl.FullCurl,
+  0.5
+);
+thumbsUpGesture.addDirection(
+  fingerpose.Finger.Thumb,
+  fingerpose.FingerDirection.VerticalUp,
+  1.0
+);
+
+export const GE = new fingerpose.GestureEstimator([
+  //fingerpose.Gestures.VictoryGesture,
+  thumbsUpGesture,
+  thumbsDownGesture,
+  //oneFingerGesture,
+]);

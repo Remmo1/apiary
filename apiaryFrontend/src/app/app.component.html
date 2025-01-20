@@ -2,12 +2,18 @@
   <img src="beeLogo.ico" class="logo">
   <h1 class="title">{{title}}</h1>
 </div>
-
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
-<button (click)="startListening()" [disabled]="isListening">Start Listening</button>
-<button (click)="stopListening()" [disabled]="!isListening">Stop Listening</button>
+<video
+  style="display: none"
+  #video
+  width="640"
+  height="480"
+  autoplay
+  [srcObject]="stream"
+></video>
+<canvas #canvas width="0" height="0"></canvas> 
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
 
 <div class="footer">
   <p class="authors">Autorzy projektu: Jan Hernas i Stanisław Izdebski</p>

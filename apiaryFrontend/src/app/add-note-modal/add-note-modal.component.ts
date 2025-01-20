@@ -14,6 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { SpeechService } from '../services/speech.service';
 import { SpeechRecognitionService } from '../services/speech-recognition.service';
+import { HandGesture } from '../services/hand-gesture.service';
+import { log } from '@tensorflow/tfjs-core/dist/log';
 
 export interface DialogData {
   date: Date;
@@ -51,6 +53,7 @@ export class AddNoteModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private speechService: SpeechService,
     private speechRecognitionService: SpeechRecognitionService,
+    private handGestureService: HandGesture,
   ) {  
     this.data.note='';
     this.speechRecognitionService.onResult((text: string) => {
@@ -58,8 +61,14 @@ export class AddNoteModalComponent implements OnInit {
     this.data.note += text;
     this.textAreaRef.nativeElement.value = this.data.note;
     this.isListening = false;
-
-  });
+    });
+    
+    handGestureService.gesture$.subscribe((value) => {
+      log(value + ' gesture detected');
+      if (value === 'ok') {
+        this.speechService.speak("Zapisano notatkę");
+        this.dialogRef.close(this.data);
+    }});
   }
 
   ngOnInit(): void 

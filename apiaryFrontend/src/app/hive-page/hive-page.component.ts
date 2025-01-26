@@ -46,6 +46,10 @@ export class HivePageComponent implements OnInit{
         case 'add note':
           this.addNote();
           break;
+        case 'save':
+          this.saveHive();
+          break;
+          
         default:
           console.log('Command not recognized:', this.commandSignal());
           

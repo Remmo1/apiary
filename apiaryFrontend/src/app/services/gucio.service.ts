@@ -3,6 +3,7 @@ import { SpeechService } from './speech.service';
 import { SpeechRecognitionService } from './speech-recognition.service';
 import { Router } from '@angular/router';
 import { HivesService } from './hives.service';
+import { log } from '@tensorflow/tfjs-core/dist/log';
 
 @Injectable({
   providedIn: 'root'
@@ -33,68 +34,160 @@ export class GucioService{
     };
 
     this.onResult((text: string) => {
-      this.userText = text;
-      this.interpretText();
-      this.isListening = false;
+        this.userText = text;
+        this.interpretText();
+        this.isListening = false;
+
     });
   }
 
   interpretText() : void {
-    var text = this.userText.toLowerCase().trim();
-    this.ngZone.run(() => {
-      if (text.includes('idź') || text.includes('przejdź')) {
-        if (text.includes('główną') || text.includes('startową') || text.includes('głównej')) {
-          this.speechService.speak("Przechodzę na stronę główną");
-          this.router.navigate(['/']);
-        } else if (text.includes('ule') || text.includes('pasiekę') || text.includes('pasieki') || text.includes('uli')) {
-          this.speechService.speak("Przechodzę na stronę uli");
-          this.router.navigate(['/hives']);
-        } else if (text.includes('sezony') || text.includes('sezon')) {
-          this.speechService.speak("Przechodzę na stronę sezonów");
-          this.router.navigate(['/sezons']);
-        } else {
-          console.log('Command not recognized:', text);
-        }
-      }
+      var text = this.userText.toLowerCase().trim();
+      this.ngZone.run(() => {
+        const currentUrl = this.router.url;
 
-      if (text.includes('pokaż')) {
-        if (text.includes('ul')) {
-          console.log(text);
-          
-          this.hivesWithNames.forEach((name, id) => {
-            if (text.includes(name)) {
-              console.log(name);
-              this.speechService.speak("Pokazuję ul " + name);
-              this.router.navigate(['/hive', id]);
-            }
-          });
-        }
-        else {
-          console.log('Command not recognized:', text);
-        }
-      }
-
-      if(text.includes('dodaj'))
-      {
-        if(text.includes('notatkę'))
-        {
-          this.speechService.speak("Dodaję notatkę");
-          const currentUrl = this.router.url;
-          if(currentUrl.includes('hive'))
-          {            
-            this.stopRecognition(true);
-            this.commandSignal.set('add note');
+        if (text.includes('idź') || text.includes('przejdź') || text.includes('otwórz')) {
+          if (text.includes('główną') || text.includes('startową') || text.includes('głównej') || text.includes('startowej')) {
+            this.speak("Przechodzę na stronę główną");
+            this.router.navigate(['/home']);
+          } else if (text.includes('ule') || text.includes('pasiekę') || text.includes('pasieki') || text.includes('uli')) {
+            this.speak("Przechodzę na stronę uli");
+            this.router.navigate(['/hives']);
+          } else if (text.includes('sezony') || text.includes('sezon')) {
+            this.speak("Przechodzę na stronę sezonów");
+            this.router.navigate(['/sezons']);
           }
         }
-        else
-        {
-          console.log('Command not recognized:', text);
+        else if (text.includes('pokaż')) {
+            if (text.includes('ul')) {
+              console.log(text);
+              
+              this.hivesWithNames.forEach((name, id) => {
+                if (text.includes(name)) {
+                  console.log(name);
+                  this.speak("Pokazuję ul " + name);
+                  this.router.navigate(['/hive', id]);
+                }
+              });
+            }
+          }
+        else if(text.includes('koniec') || text.includes('kończymy') ){
+          this.end();
         }
-      }
+        else{
+          switch (currentUrl) 
+          {
 
-    });
-    this.commandSignal.set('');
+          //Main page
+          case '/home':
+            if(text.includes('pomoc') || text.includes('pomóż') ){
+              this.help();
+            }
+            else
+            {
+              console.log('Command not recognized:', text);
+            }
+            break;
+          //Hives page
+          case '/hives':
+            if(text.includes('wróć') || text.includes('powrót') || text.includes('cofnij') || text.includes('powróć')) 
+            {
+              this.speak("Wracam do strony głównej");
+              this.router.navigate(['/home']);
+            }
+            else if(text.includes('pomoc') || text.includes('pomóż') ){
+              this.help();
+            }
+            else
+            {
+              console.log('Command not recognized:', text);
+            }
+            break;
+
+          //Sezons page
+          case '/sezons':
+              if(text.includes('wróć') || text.includes('powrót') || text.includes('cofnij') || text.includes('powróć')) 
+              {
+                this.speak("Wracam do strony głównej");
+                this.router.navigate(['/home']);
+              }
+              else if(text.includes('pomoc') || text.includes('pomóż') ){
+                this.help();
+              }
+              else
+              {
+                console.log('Command not recognized:', text);
+              }
+              break;
+
+          //Choosen hive page
+          default:
+            if(text.includes('wróć') || text.includes('powrót') || text.includes('cofnij') || text.includes('powróć')) 
+            {
+              this.speak("Wracam do strony uli");
+              this.router.navigate(['/hives']);
+            }
+            else if(text.includes('pomoc') || text.includes('pomóż') ){
+              this.help();
+            }
+            else if(text.includes('dodaj'))
+            {
+              if(text.includes('notatkę'))
+              {
+                this.speak("Dodaję notatkę");
+                if(currentUrl.includes('hive'))
+                {            
+                  this.stopRecognition(true);
+                  this.commandSignal.set('add note');
+                }
+              }
+            }
+            else if(text.includes('zapisz'))
+            {
+              this.speak("Zapisuję zmiany");
+              this.commandSignal.set('save');
+            }
+            else
+            {
+              console.log('Command not recognized:', text);
+            }
+          }
+        }
+
+      });
+
+      this.commandSignal.set('');
   } 
+
+  greeting(): void {
+    this.speechService.speak(`Cześć, nazywam się Gucio i z chęcią pomogę Ci w pracy na pasiece. 
+      Jestem trochę zaspany bo dopiero wstałem. Przez to mogę reagować trochę wolniej za co z góry przepraszam. 
+      Jeśli chcesz żebym Ci pomógł, pomachaj do kamery.`);
+  }
+
+  help(): void {
+    this.speak(`Jeśli chcesz przejść do wybranej strony powiedz, "przejdź do" i nazwę strony. 
+      Jeśli chcesz zobaczyć informacje o wybranym ulu powiedz, "pokaż" i nazwę ula.
+      Jeśli chcesz wrócić do poprzedniej strony powiedz, "wróć".
+      Jeśli chcesz dodać notatkę powiedz, "dodaj notatkę".
+      Aby zapisać notatkę pokaż kciuk w górę. Aby anulować pokaż kciuk w dół.
+      Jeśli chcesz zapisać zmiany w ulu powiedz, "zapisz".
+      Jeśli chcesz zakończyć rozmowę powiedz, "koniec".
+      Mam nadzieję, że Ci pomogłem.`
+    );
+  }
+
+  start(): void {
+    this.speak('Cześć, już słucham. Co mogę dla Ciebie zrobić? ');
+  } 
+
+  end(): void {
+    this.speak('Mam nadzieję, że Ci pomogłem. Do zobaczenia!');
+  }
+
+  speak(text: string): void {
+    this.speechService.speak(text);
+  }
 
   startRecognition(): void {
     this.recognition.start();
@@ -123,17 +216,6 @@ export class GucioService{
   }
 
   onResult(callback: (text: string) => void): void {
-    // this.recognition.onresult = (event: any) => {
-    //   let transcript = '';
-    //   for (let i = event.resultIndex; i < event.results.length; ++i) {
-    //     transcript += event.results[i][0].transcript;
-    //   }
-    //   callback(transcript);
-    // };
-    // this.recognition.onresult = (event: any) => {
-    //   const transcript = event.results[0][0].transcript;
-    //   callback(transcript);
-    // };
     this.recognition.onresult = (event: any) => {
       let finalTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; ++i) {

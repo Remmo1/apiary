@@ -18,7 +18,7 @@ import { filter, map, withLatestFrom } from 'rxjs';
     styleUrls: ['./app.component.scss'],
     imports: [CommonModule, RouterOutlet]
 })
-export class AppComponent{
+export class AppComponent implements OnInit {
   title = 'BeeKing';
   text: string = 'pszczoła';
   isListening: boolean = false;
@@ -51,9 +51,13 @@ export class AppComponent{
     //   withLatestFrom(this.gesture$)
     // )
   }
+  ngOnInit(): void {
+    this.gucioService.greeting();
+  }
 
   startListening(): void {
     this.gucioService.startRecognition();
+    this.gucioService.start();
     this.isListening = true;
   }
 

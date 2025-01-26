@@ -73,6 +73,7 @@ export class GucioService{
           }
         else if(text.includes('koniec') || text.includes('kończymy') ){
           this.end();
+          this.commandSignal.set('end');
         }
         else{
           switch (currentUrl) 
@@ -182,7 +183,7 @@ export class GucioService{
   } 
 
   end(): void {
-    this.speak('Mam nadzieję, że Ci pomogłem. Do zobaczenia!');
+    this.speak('Mam nadzieję, że Ci pomogłem. Do zobaczenia, a ja wracam do spania!');
   }
 
   speak(text: string): void {

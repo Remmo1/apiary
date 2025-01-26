@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { SpeechService } from './services/speech.service';
@@ -18,18 +18,21 @@ import { filter, map, withLatestFrom } from 'rxjs';
     styleUrls: ['./app.component.scss'],
     imports: [CommonModule, RouterOutlet]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   title = 'BeeKing';
   text: string = 'pszczoła';
   isListening: boolean = false;
   model: any;
   @ViewChild('video') video!: ElementRef<HTMLVideoElement>;
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('indicator') listeningIndicator!: ElementRef;
 
   started$ = this._recognizer.swipe$.pipe(
     filter((value) => value === 'left' || value === 'right'),
     map((value) => (value === 'left' ? 'left' : 'right'))
   );
+
+  commandSignal = this.gucioService.commandSignal;
 
   gesture$ = this._recognizer.gesture$();
   // $(
@@ -50,20 +53,32 @@ export class AppComponent implements OnInit {
     //   filter((value) => value === 'ok'),
     //   withLatestFrom(this.gesture$)
     // )
+    effect(() => {
+      switch (this.commandSignal()) {
+        case 'end':
+          this.listeningIndicator.nativeElement.classList.remove('listening_indicator_active');
+          this.listeningIndicator.nativeElement.classList.add('listening_indicator_incactive');
+          break;
+        default:
+          break;
+      }
+    }
+    );
   }
-  ngOnInit(): void {
-    this.gucioService.greeting();
-  }
-
+ 
   startListening(): void {
     this.gucioService.startRecognition();
-    this.gucioService.start();
+    this.gucioService.start()
     this.isListening = true;
+    this.listeningIndicator.nativeElement.classList.remove('listening_indicator_incactive');
+    this.listeningIndicator.nativeElement.classList.add('listening_indicator_active');
   }
 
   stopListening(): void {
     this.gucioService.stopRecognition(true);
     this.isListening = false;
+    this.listeningIndicator.nativeElement.classList.remove('listening_indicator_active');
+    this.listeningIndicator.nativeElement.classList.add('listening_indicator_incactive');
   }
 
   get stream(): MediaStream {
@@ -71,6 +86,7 @@ export class AppComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.gucioService.greeting();
     this._recognizer.initialize(
       this.canvas.nativeElement,
       this.video.nativeElement

@@ -28,6 +28,65 @@
     font-size: 50px;
 }
 
+.gucio_background{
+    width: 103px;
+    height: 160px;
+    position: absolute; 
+    border-radius: 15%; // Makes it a perfect circle
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg,#b58f12,#b78807);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gucio{
+    width: 103px;
+    height: 103px;
+    // margin-left: -30px;
+    // margin-top: -30px;
+}
+
+.listening_indicator_inactive {
+    width: 20px; // Circle size
+    height: 20px;
+    border-radius: 50%; // Makes it a perfect circle
+    background: radial-gradient(circle, #4caf50, #2e7d32, #1b5e20);
+    box-shadow: 0 0 15px #0c6213d5; // Soft glow around the circle
+    position: fixed;
+    margin-top: 100px;
+  }
+
+.listening_indicator_active {
+    width: 20px; // Circle size
+    height: 20px;
+    border-radius: 50%; // Makes it a perfect circle
+    background: radial-gradient(circle, #e63a0fec, #ae2705ec, #711903ec); 
+    box-shadow: 0 0 15px #e4f802d5; // Soft glow around the circle
+    animation: pulse 1.5s infinite ease-in-out; // Continuous pulsing animation
+    position: fixed;
+    margin-top: 100px;
+  }
+  
+  // Pulse animation
+  @keyframes pulse {
+    0% {
+      transform: scale(1); // Normal size
+      box-shadow: 0 0 20px rgb(238, 5, 5), 0 0 30px rgba(227, 26, 15, 0.8); // Strong initial glow
+    }
+    50% {
+      transform: scale(1.1); // Slightly larger to give a dynamic effect
+      box-shadow: 0 0 30px rgb(120, 13, 5), 0 0 50px rgb(82, 3, 3); // Stronger glow at the peak
+    }
+    100% {
+      transform: scale(1); // Back to normal size
+      box-shadow: 0 0 20px rgb(249, 71, 7), 0 0 30px rgba(255, 85, 0, 0.8); // Normal glow
+    }
+  }
+
+
 .content{
     padding-top: 100px;
     margin-left: 30px;

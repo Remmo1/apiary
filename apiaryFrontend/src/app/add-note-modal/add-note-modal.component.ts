@@ -47,6 +47,7 @@ export class AddNoteModalComponent implements OnInit {
   // note: string = '';
   // dotNumber: number = 0;
   @ViewChild('noteArea') textAreaRef!: ElementRef<HTMLTextAreaElement>;
+  lastGesture = this.handGestureService.gesture$;
 
   constructor(
     public dialogRef: MatDialogRef<AddNoteModalComponent>,
@@ -54,6 +55,7 @@ export class AddNoteModalComponent implements OnInit {
     private speechService: SpeechService,
     private speechRecognitionService: SpeechRecognitionService,
     private handGestureService: HandGesture,
+
   ) {  
     this.data.note='';
     this.speechRecognitionService.onResult((text: string) => {
@@ -63,12 +65,22 @@ export class AddNoteModalComponent implements OnInit {
     this.isListening = false;
     });
     
-    handGestureService.gesture$.subscribe((value) => {
-      log(value + ' gesture detected');
-      if (value === 'ok') {
+    effect(() => {
+      if (this.lastGesture() === 'thumbs_up') {
         this.speechService.speak("Zapisano notatkę");
         this.dialogRef.close(this.data);
-    }});
+      }
+      if (this.lastGesture() === 'thumbs_down') {
+        this.speechService.speak("Anulowano notatkę");
+        this.dialogRef.close();
+      }
+  });
+    // handGestureService.gesture$.subscribe((value) => {
+    //   log(value + ' gesture detected');
+    //   if (value === 'ok') {
+    //     this.speechService.speak("Zapisano notatkę");
+    //     this.dialogRef.close(this.data);
+    // }});
   }
 
   ngOnInit(): void 

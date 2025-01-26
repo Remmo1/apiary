@@ -31,10 +31,11 @@ export class AppComponent{
     map((value) => (value === 'left' ? 'left' : 'right'))
   );
 
-  gesture$ = this._recognizer.gesture$.pipe(
-    filter((value) => value === 'ok'),
-    map((value) => (value === 'ok' ? 'start' : 'nothing'))
-  );
+  gesture$ = this._recognizer.gesture$();
+  // $(
+  //   filter((value) => value === 'ok'),
+  //   map((value) => (value === 'ok' ? 'start' : 'nothing'))
+  // );
 
   constructor(private speechService: SpeechService, private speechRecognitionService: SpeechRecognitionService, private gucioService: GucioService,
     private _recognizer: HandGesture, private _router: Router
@@ -44,11 +45,11 @@ export class AppComponent{
         this.startListening();
       }
     });
-    this._recognizer.gesture$
-    .pipe(
-      filter((value) => value === 'ok'),
-      withLatestFrom(this.gesture$)
-    )
+    this.gesture$ = this._recognizer.gesture$();
+    // .pipe(
+    //   filter((value) => value === 'ok'),
+    //   withLatestFrom(this.gesture$)
+    // )
   }
 
   startListening(): void {

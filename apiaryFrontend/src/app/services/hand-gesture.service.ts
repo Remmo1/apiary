@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, Signal, signal } from '@angular/core';
 import * as handpose from '@tensorflow-models/handpose';
 
 import '@tensorflow/tfjs-backend-webgl';
 import '@tensorflow/tfjs-backend-cpu';
 import { drawKeypoints } from './hand-renderer';
 import { GE } from './fingere-gesture';
+import { BehaviorSubject } from 'rxjs';
+import { log } from '@tensorflow/tfjs-core/dist/log';
 
 const GestureMap = {
   thumbs_up: 'ok',
   thumbs_down: 'cancel',
 };
 
-type Gesture = 'cancel'| 'ok' | 'none';
+type Gesture = 'thumbs_down' | 'thumbs_up' | 'none';
 type Direction = 'left' | 'right' | 'none';
 type Size = [number, number];
 type Point = [number, number];
@@ -25,8 +26,8 @@ export class HandGesture {
   private _swipe$ = new BehaviorSubject<Direction>('none');
   readonly swipe$ = this._swipe$.asObservable();
 
-  private _gesture$ = new BehaviorSubject<Gesture>('none');
-  readonly gesture$ = this._gesture$.asObservable();
+  private _gesture$ = signal<Gesture>('none'); // Changed to Signal
+  readonly gesture$ = this._gesture$; // Expose as readonly Signal
 
   private _initiated = false;
   private _initialTimestamp = -1;
@@ -50,9 +51,9 @@ export class HandGesture {
       })
       .then((model) => {
         const context = canvas.getContext('2d');
-        if(!context){
-          console.log("context is null"); 
-          return
+        if (!context) {
+          console.log('context is null');
+          return;
         }
         context.clearRect(0, 0, video.width, video.height);
         context.strokeStyle = 'red';
@@ -90,17 +91,14 @@ export class HandGesture {
   }
 
   private _processGesture(landmarks: any): void {
-    // Estimate gestures based on the landmarks with a threshold of 7.5
     const { gestures } = GE.estimate(landmarks, 5) || [];
     let detectedGesture = null;
-  
-    // Check if any of the recognized gestures match the one we're interested in
+
     for (const g of gestures) {
       if (g.name === 'thumbs_up') {
         detectedGesture = g.name;
-        break; // Exit the loop early if "thumbs up" is found
+        break;
       }
-      // Add more gestures here as needed
       if (g.name === 'thumbs_down') {
         detectedGesture = g.name;
         break;
@@ -109,40 +107,36 @@ export class HandGesture {
         detectedGesture = g.name;
         break;
       }
-
       if (g.name === 'victory') {
         detectedGesture = g.name;
         break;
       }
     }
-  
-    // Log and handle the detected gesture
+
     if (!detectedGesture && gestures.length) {
       console.log('Gesture detected:', detectedGesture);
     }
-  
-    // If the detected gesture is different from the last one, update the gesture
+
     if (this._lastGesture !== detectedGesture) {
       this._lastGesture = detectedGesture;
       this._lastGestureTiemstamp = Date.now();
       console.log('Gesture detected:', detectedGesture);
-  
+
+      this._gesture$.set(detectedGesture as keyof typeof GestureMap as Gesture); // Update the Signal
       this._emitGesture = true;
     } else {
-      // If the gesture is the same, check if enough time has passed to emit the gesture
       if (
         this._emitGesture &&
         this._toSeconds(Date.now() - this._lastGestureTiemstamp) > 1
       ) {
         if (this._lastGesture) {
-          // Emit the gesture if it's mapped in the GestureMap
-          if (GestureMap[this._lastGesture as keyof typeof GestureMap]) {
-            this._gesture$.next(
-              GestureMap[this._lastGesture as keyof typeof GestureMap] as Gesture
-            );
+          const gesture = GestureMap[this._lastGesture as keyof typeof GestureMap];
+          if (gesture) {
+            log(' gesture updated');
+            this._gesture$.set(gesture as keyof typeof GestureMap as Gesture); // Update the Signal
           }
         }
-        this._emitGesture = false; // Reset the emit flag
+        this._emitGesture = false;
       }
     }
   }
@@ -192,8 +186,8 @@ export class HandGesture {
 
   private _getMiddle(rect: Rect): Point {
     return [
-      rect.topLeft[0] + (rect.topLeft[0] + rect.bottomRight[0]) / 2,
-      rect.topLeft[1] + (rect.topLeft[1] + rect.bottomRight[1]) / 2,
+      rect.topLeft[0] + (rect.bottomRight[0] - rect.topLeft[0]) / 2,
+      rect.topLeft[1] + (rect.bottomRight[1] - rect.topLeft[1]) / 2,
     ];
   }
 }

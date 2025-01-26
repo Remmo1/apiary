@@ -79,15 +79,16 @@ export class HivePageComponent implements OnInit{
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      if(this.dataSource){
-        this.dataSource.push(new Note(this.notesCount, result.date, result.note, this.hive.id, result.honey, result.syroup));
-        this.dataSource = [...this.dataSource];
-        this.notesCount++;
+      if(result){
+        if(this.dataSource){
+          this.dataSource.push(new Note(this.notesCount, result.date, result.note, this.hive.id, result.honey, result.syroup));
+          this.dataSource = [...this.dataSource];
+          this.notesCount++;
+        }
+        else{
+          console.log(result);
+        }
       }
-      else{
-        console.log(result);
-      }
-
       this.speechRecognitionService.stopRecognition(true);
       this.gucio.startRecognition();
       });

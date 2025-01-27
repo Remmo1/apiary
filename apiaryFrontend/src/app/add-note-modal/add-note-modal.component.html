@@ -8,6 +8,12 @@
     <mat-datepicker #datePicker></mat-datepicker>
   </mat-form-field>
 
+    <div *ngIf="isListening" class="listening_indicators">
+      <div class="listening_indicator_1"> </div>
+      <div class="listening_indicator_2"> </div>
+      <div class="listening_indicator_3"> </div>
+    </div>
+
   <div class="noteField">
   <mat-form-field appearance="fill">
     <mat-label>Notatka</mat-label>

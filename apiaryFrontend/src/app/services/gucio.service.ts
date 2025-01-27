@@ -64,7 +64,6 @@ export class GucioService{
               
               this.hivesWithNames.forEach((name, id) => {
                 if (text.includes(name)) {
-                  console.log(name);
                   this.speak("Pokazuję ul " + name);
                   this.router.navigate(['/hive', id]);
                 }
@@ -74,6 +73,7 @@ export class GucioService{
         else if(text.includes('koniec') || text.includes('kończymy') ){
           this.end();
           this.commandSignal.set('end');
+          this.stopRecognition(true);
         }
         else{
           switch (currentUrl) 
@@ -81,7 +81,7 @@ export class GucioService{
 
           //Main page
           case '/home':
-            if(text.includes('pomoc') || text.includes('pomóż') ){
+            if(text.includes('pomoc') || text.includes('pomóż') || text.includes('pomocy')){
               this.help();
             }
             else
@@ -96,7 +96,7 @@ export class GucioService{
               this.speak("Wracam do strony głównej");
               this.router.navigate(['/home']);
             }
-            else if(text.includes('pomoc') || text.includes('pomóż') ){
+            else if(text.includes('pomoc') || text.includes('pomóż') || text.includes('pomocy')){
               this.help();
             }
             else
@@ -112,7 +112,7 @@ export class GucioService{
                 this.speak("Wracam do strony głównej");
                 this.router.navigate(['/home']);
               }
-              else if(text.includes('pomoc') || text.includes('pomóż') ){
+              else if(text.includes('pomoc') || text.includes('pomóż') || text.includes('pomocy')){
                 this.help();
               }
               else
@@ -128,7 +128,7 @@ export class GucioService{
               this.speak("Wracam do strony uli");
               this.router.navigate(['/hives']);
             }
-            else if(text.includes('pomoc') || text.includes('pomóż') ){
+            else if(text.includes('pomoc') || text.includes('pomóż') || text.includes('pomocy') ){
               this.help();
             }
             else if(text.includes('dodaj'))

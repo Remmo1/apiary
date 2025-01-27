@@ -58,6 +58,7 @@ export class AppComponent implements AfterViewInit {
         case 'end':
           this.listeningIndicator.nativeElement.classList.remove('listening_indicator_active');
           this.listeningIndicator.nativeElement.classList.add('listening_indicator_incactive');
+          this.isListening = false;
           break;
         default:
           break;
@@ -86,7 +87,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.gucioService.greeting();
+    //this.gucioService.greeting();
     this._recognizer.initialize(
       this.canvas.nativeElement,
       this.video.nativeElement

@@ -20,3 +20,89 @@
         font-size: 25px; 
     }
 }
+
+.listening_indicators{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.listening_indicator_1{
+    width: 10px; // Circle size
+    height: 10px;
+    border-radius: 50%; // Makes it a perfect circle
+    background: radial-gradient(circle, #e63a0fec, #ae2705ec, #711903ec);  // Circular gradient
+    box-shadow: 0 0 30px rgba(76, 175, 80, 1), 0 0 60px rgba(76, 175, 80, 0.8); // Glow effect
+    animation: pulse_1 1s infinite ease-in-out; // Pulsing effect
+    margin: 5px;
+  }
+
+  .listening_indicator_2{
+    width: 10px; // Circle size
+    height: 10px;
+    border-radius: 50%; // Makes it a perfect circle
+    background: radial-gradient(circle, #e63a0fec, #ae2705ec, #711903ec);  // Circular gradient
+    box-shadow: 0 0 30px rgba(76, 175, 80, 1), 0 0 60px rgba(76, 175, 80, 0.8); // Glow effect
+    animation: pulse_2 1s infinite ease-in-out; // Pulsing effect
+    margin: 5px;
+  }
+
+  .listening_indicator_3{
+    width: 10px; // Circle size
+    height: 10px;
+    border-radius: 50%; // Makes it a perfect circle
+    background: radial-gradient(circle, #e63a0fec, #ae2705ec, #711903ec);  // Circular gradient
+    box-shadow: 0 0 30px rgba(76, 175, 80, 1), 0 0 60px rgba(76, 175, 80, 0.8); // Glow effect
+    animation: pulse_3 1s infinite ease-in-out; // Pulsing effect
+    margin: 5px;
+  }
+  
+  // Optional: Pulsing glow animation
+  // Pulse animation
+  @keyframes pulse_1 {
+    0% {
+      transform: scale(1); // Normal size
+      box-shadow: 0 0 20px rgb(238, 5, 5), 0 0 30px rgba(227, 26, 15, 0.8); // Strong initial glow
+    }
+    50% {
+      transform: scale(1.2); // Slightly larger to give a dynamic effect
+      box-shadow: 0 0 30px rgb(120, 13, 5), 0 0 50px rgb(82, 3, 3); // Stronger glow at the peak
+    }
+    100% {
+      transform: scale(1); // Back to normal size
+      box-shadow: 0 0 20px rgb(249, 71, 7), 0 0 30px rgba(255, 85, 0, 0.8); // Normal glow
+    }
+  }
+
+  @keyframes pulse_2 {
+    0% {
+        transform: scale(1); // Back to normal size
+        box-shadow: 0 0 20px rgb(249, 71, 7), 0 0 30px rgba(255, 85, 0, 0.8); // Normal glow
+    }
+    50% {
+        transform: scale(1); // Normal size
+        box-shadow: 0 0 20px rgb(238, 5, 5), 0 0 30px rgba(227, 26, 15, 0.8); // Strong initial glow
+    }
+    100% {
+        transform: scale(1.2); // Slightly larger to give a dynamic effect
+        box-shadow: 0 0 30px rgb(120, 13, 5), 0 0 50px rgb(82, 3, 3); // Stronger glow at the peak
+    }
+  }
+
+  @keyframes pulse_3 {
+    0% {
+        transform: scale(1.2); // Slightly larger to give a dynamic effect
+        box-shadow: 0 0 30px rgb(120, 13, 5), 0 0 50px rgb(82, 3, 3); // Stronger glow at the peak
+    }
+    50% {
+        transform: scale(1); // Back to normal size
+        box-shadow: 0 0 20px rgb(249, 71, 7), 0 0 30px rgba(255, 85, 0, 0.8); // Normal glow
+    }
+    100% {
+        transform: scale(1); // Normal size
+        box-shadow: 0 0 20px rgb(238, 5, 5), 0 0 30px rgba(227, 26, 15, 0.8); // Strong initial glow
+    }
+  }

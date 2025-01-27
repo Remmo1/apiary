@@ -55,17 +55,19 @@ export class HivesPageComponent implements OnInit{
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      this.hivesService.createHive(new Hive(result.name, result.queen, [], [])).subscribe(result => {
-        if(result instanceof Error){
-          console.log(result);
-        }
-        else{
-          this.dataSource.push(result);
-          this.dataSource = [...this.dataSource];
-          this.countApiaryParameters();
-        }
-
-      });
+      if(result){
+        this.hivesService.createHive(new Hive(result.name, result.queen, [], [])).subscribe(result => {
+          if(result instanceof Error){
+            console.log(result);
+          }
+          else{
+            this.dataSource.push(result);
+            this.dataSource = [...this.dataSource];
+            this.countApiaryParameters();
+          }
+        
+        });
+     }
     });
   }
 

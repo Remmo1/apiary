@@ -55,20 +55,22 @@ export class HivePageComponent implements OnInit{
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      if(this.dataSource){
-        this.worksService.createWork(new Work(result.date, ":)", result.note, this.hive.id, result.honey, result.syroup)).subscribe(result => {
-          if(result instanceof Error){
-            console.log(result);
-          }
-          else{
-            this.dataSource.push(result);
-            this.dataSource = [...this.dataSource];
-          }
-  
-        });
+      if(result){
+        if(this.dataSource){
+          this.worksService.createWork(new Work(result.date, ":)", result.note, this.hive.id, result.honey, result.syroup)).subscribe(result => {
+            if(result instanceof Error){
+              console.log(result);
+            }
+            else{
+              this.dataSource.push(result);
+              this.dataSource = [...this.dataSource];
+            }
+    
+          });
+        }
       }
-
       });
+    
 
   }
 

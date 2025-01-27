@@ -48,15 +48,17 @@ export class SezonsPageComponent implements OnInit{
     });
     
     dialogRef.afterClosed().subscribe(result => {
-      this.sezonsService.createSezon(new Sezon(result.name, result.startDate, result.endDate, 0, 0)).subscribe(result => {
-        this.dataSource.push(result);
-        this.sezons.push(result);
-        this.dataSource = [...this.dataSource];
-        this.sezonsService.getSezons().subscribe(result => {
-          if(result )
-            this.dataSource = result;
+      if(result){
+        this.sezonsService.createSezon(new Sezon(result.name, result.startDate, result.endDate, 0, 0)).subscribe(result => {
+          this.dataSource.push(result);
+          this.sezons.push(result);
+          this.dataSource = [...this.dataSource];
+          this.sezonsService.getSezons().subscribe(result => {
+            if(result )
+              this.dataSource = result;
+          });
         });
-      });
+      }
     });
   }
 

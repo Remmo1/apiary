@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 
@@ -12,5 +12,12 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
     imports: [CommonModule, RouterOutlet, NavigationBarComponent]
 })
 export class AppComponent {
+  constructor(private router: Router) { }
   title = 'BeeKing';
+
+  gotoHome() {
+    this.router.navigate(['/home']);
+  }
+
+
 }
